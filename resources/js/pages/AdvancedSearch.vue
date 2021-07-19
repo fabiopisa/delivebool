@@ -2,6 +2,9 @@
   <section>
     <div class="container">
       <h1>Cerca qui</h1>
+      <router-link class="btn btn-primary" :to="{name:'restaurant'}" >
+        Resturant/Menu
+      </router-link>
       <router-link class="btn btn-secondary" :to="{name:'home'}">
         Return Home
       </router-link>
