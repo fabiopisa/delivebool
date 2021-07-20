@@ -22,6 +22,8 @@ class UpdateRestaurantTable extends Migration
                 ->references('id')
                 ->on('owners')
                 ->onDelete('cascade');
+
+            
         });
     }
 
@@ -32,6 +34,13 @@ class UpdateRestaurantTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('restaurants', function (Blueprint $table) {
+
+            // 1 elimino la FK
+            $table->dropForeign(['owner_id']);
+
+            // 2 elimino la colonna
+            $table->dropColumn('owner_id');
+        });
     }
 }

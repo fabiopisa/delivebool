@@ -14,4 +14,12 @@ class Restaurant extends Model
     return $this->belongsTo('App\Owner');
    }
 
+   public function meals(){
+      return $this->hasMany('App\Meal');
+   }
+   
+   public function orders(){
+     return $this->hasMany('App\Order');
+   }
+
 }
