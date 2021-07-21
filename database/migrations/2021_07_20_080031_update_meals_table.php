@@ -16,13 +16,13 @@ class UpdateMealsTable extends Migration
         Schema::table('meals', function (Blueprint $table) {
 
             //creo la colonna che conterrà la fk collegata alla tabella dei restaurants
-            $table->unsignedBigInteger('restaurant_id')->after('id');
+            $table->unsignedBigInteger('restaurant_id')->nullable()->after('id');
 
             //mi collego la fk creata nella tabella meals all'id della tabella restaurant
             $table->foreign('restaurant_id')
                 ->references('id')
                 ->on('restaurants')
-                ->onDelete('cascade');
+                ->onDelete('set null');
         });
     }
 

@@ -23,7 +23,7 @@ class CreateCustomersTable extends Migration
             $table->string('city',50);
             $table->char('cap',5);
             $table->string('house_num', 10);
-            $table->string('intern', 10);
+            $table->string('intern', 10)->nullable();
             $table->timestamps();
         });
     }

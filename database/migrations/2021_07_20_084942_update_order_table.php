@@ -16,24 +16,24 @@ class UpdateOrderTable extends Migration
         Schema::table('orders', function (Blueprint $table) {
 
             //creo la colonna per la fk legata alla tabella customers
-            $table->unsignedBigInteger('customer_id')->after('id');
+            $table->unsignedBigInteger('customer_id')->nullable()->after('id');
 
             //collego la fk alla tabella customer
             $table->foreign('customer_id')
                 ->references('id')
                 ->on('customers')
-                ->onDelete('cascade');
-            
+                ->onDelete('set null');
+
             //creo la colonna per la fk legata alla tabella restaurants
-            $table->unsignedBigInteger('restaurant_id')->after('customer_id');
-            
+            $table->unsignedBigInteger('restaurant_id')->nullable()->after('customer_id');
+
             //collego al fk alla tabella restaurants
             $table->foreign('restaurant_id')
                 ->references('id')
                 ->on('restaurants')
-                ->onDelete('cascade');
+                ->onDelete('set null');
 
-            
+
         });
     }
 
@@ -44,7 +44,7 @@ class UpdateOrderTable extends Migration
      */
     public function down()
     {
-        Schema::table('order', function (Blueprint $table) {
+        Schema::table('orders', function (Blueprint $table) {
 
             // 1 elimino la FK legata al restaurant
             $table->dropForeign(['restaurant_id']);

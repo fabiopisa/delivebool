@@ -16,16 +16,14 @@ class RestaurantsTableSeeder extends Seeder
     public function run()
 
     {
-      $arrRestaurant=[];
+        for ($i=0; $i < 5; $i++) {
 
-      $arrRestaurant.require('../../config/restaurants.php');
-
-        foreach ($arrRestaurant as $restaurant){
             $new_restaurant = new Restaurant();
-            $new_restaurant->name=$restaurant['name'];
+            $new_restaurant->name= "restaurant " . ($i+1);
             $new_restaurant->slug=Str::slug($new_restaurant->name);
-            $new_restaurant->address=$restaurant['address'];
+            $new_restaurant->address= "address " . ($i+1);
             $new_restaurant->save();
+
         }
 
     }
