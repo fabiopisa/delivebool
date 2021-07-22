@@ -10,8 +10,8 @@ class Restaurant extends Model
         return $this->belongsToMany('App\Category');
    }
 
-   public function owner(){
-    return $this->belongsTo('App\Owner');
+   public function user(){
+    return $this->belongsTo('App\User');
    }
 
    public function meals(){
