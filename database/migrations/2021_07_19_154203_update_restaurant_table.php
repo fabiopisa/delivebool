@@ -15,15 +15,22 @@ class UpdateRestaurantTable extends Migration
     {
         Schema::table('restaurants', function (Blueprint $table){
             //mi creo la colonna per il collegamento della tabella restaurants con la tabella owners
+
+
             $table->unsignedBigInteger('user_id')->after('id');
+
 
             //collego la fk con la tabella owners
             $table->foreign('user_id')
                 ->references('id')
+
+
+
                 ->on('users')
-                ->onDelete('cascade');
+                ->onDelete('set null');
 
             
+
         });
     }
 
