@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Restaurant extends Model
 {
    protected $fillable=[
-        'owner_id',
+        'user_id',
         'name',
         'slug',
         'address'
@@ -18,7 +18,7 @@ class Restaurant extends Model
    }
 
    public function user(){
-    return $this->belongsTo('App\Owner');
+    return $this->belongsTo('App\User');
    }
 
    public function meals(){

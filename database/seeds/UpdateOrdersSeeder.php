@@ -20,8 +20,8 @@ class UpdateOrdersSeeder extends Seeder
         foreach ($orders as $order) {
 
             $data=[
-                'customer_id'=>Customer::find()->id,
-                'restaurant_id'=>Restaurant::find()->id
+                'customer_id'=>Customer::inRandomOrder()->first()->id,
+                'restaurant_id'=>Restaurant::inRandomOrder()->first()->id
             ];
             $order->update($data);
         }

@@ -17,19 +17,14 @@ class UpdateRestaurantTable extends Migration
             //mi creo la colonna per il collegamento della tabella restaurants con la tabella owners
 
 
-            $table->unsignedBigInteger('user_id')->after('id');
+            $table->unsignedBigInteger('user_id')->nullable()->after('id');
 
 
             //collego la fk con la tabella owners
             $table->foreign('user_id')
                 ->references('id')
-
-
-
                 ->on('users')
-                ->onDelete('set null');
-
-            
+                ->onDelete('cascade');
 
         });
     }
@@ -44,10 +39,10 @@ class UpdateRestaurantTable extends Migration
         Schema::table('restaurants', function (Blueprint $table) {
 
             // 1 elimino la FK
-            $table->dropForeign(['owner_id']);
+            $table->dropForeign(['user_id']);
 
             // 2 elimino la colonna
-            $table->dropColumn('owner_id');
+            $table->dropColumn('user_id');
         });
     }
 }

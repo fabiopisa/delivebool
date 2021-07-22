@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Restaurant;
-use App\Owner;
+use App\User;
 
 class UpdateRestaurantsSeeder extends Seeder
 {
@@ -19,7 +19,7 @@ class UpdateRestaurantsSeeder extends Seeder
         foreach ($restaurants as $restaurant) {
 
             $data=[
-                'owner_id'=>Owner::inRandomOrder()->first()->id
+                'user_id'=>User::inRandomOrder()->first()->id
             ];
             $restaurant->update($data);
         }
