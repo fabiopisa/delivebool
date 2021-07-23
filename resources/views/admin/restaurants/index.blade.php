@@ -11,7 +11,7 @@
     @if (session('deleted'))
       <div class="alert alert-success">
         <strong>{{session('deleted')}}</strong>
-        è stato cancellato correttaemnte
+        è stato cancellato correttamente
       </div>
     @endif
   </div>
@@ -68,7 +68,7 @@
       << I miei dati
     </a>
   
-    <a class="btn btn-primary mt-5" href="{{route('admin.restaurants.create')}}">
+    <a class="btn btn-outline-primary mt-5" href="{{route('admin.restaurants.create')}}">
       Aggiungi ristorante
     </a> 
   </div>
