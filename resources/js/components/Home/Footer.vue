@@ -12,10 +12,9 @@ export default {
 }
 </script>
 
-<style lang='scss'>
+<style lang='scss' scoped>
 .footer{
     height: 10px;
-    margin-top: calc(100% - 10px);
 }
 
 </style>
