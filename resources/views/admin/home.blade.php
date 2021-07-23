@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="text-center">
+            <div class="text-center d-flex flex-column align-items-center">
                 <div class="col-12 text-center">
                     <div class="card col-6 m-auto">
                             <div class="card-body">
@@ -19,20 +19,17 @@
                         </div>
                     </div>
                 </div>
-                <a class="btn btn-primary mt-5" href="{{route('admin.restaurants.index')}}">
-                    I miei ristoranti
-                </a>
-                {{-- <div class="card-header">{{ __('Dashboard') }}</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                <div class="d-flex flex-column col-4">
+                    <a class="btn btn-primary mt-5" href="{{route('admin.restaurants.index')}}">
+                        I miei ristoranti
+                    </a>   
+    
+                    <a class="btn btn-outline-primary mt-3" href="{{route('admin.restaurants.create')}}">
+                        Aggiungi ristorante
+                    </a>
+                </div>
 
-                    {{ __('You are logged in!') }}
-                </div> --}}
             </div>
         </div>
     </div>

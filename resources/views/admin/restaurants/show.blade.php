@@ -4,21 +4,38 @@
 <div class="container text-center">
   <h1>I miei piatti</h1>
 
-  <div class="d-flex flex-wrap">
+  <div>
     @foreach ($meals as $meal)
-      <div class="col-6 mt-5">
-        <h3>{{$meals->name}}</h3>
-        <img src="{{$meals->img}}" alt="">
-        <p>{{$meals->description}}</p>
-        <span class="badge badge-info">Prezzo: {{$meals->price}}€</span>
-        @if ($meals->available == 1)
-          <span class="badge badge-success">Disponibile</span>
-        @else
-          <span class="badge badge-danger">Non disponibile</span>
-        @endif
-      </div>
+      @if ($meal->restaurant_id === $restaurant->id)
+        <div class="col-12 row mt-5 d-flex align-items-center">
+          <div class="col-4">
+            <h2>{{$meal->name}}</h2>
+            <img src="{{$meal->img}}" alt="">
+          </div>
+          <div class="col-8 text-left" >
+            <p>{{$meal->description}}</p>
+            <h4>
+              <span class="badge badge-info">
+                Prezzo: {{$meal->price}}€
+              </span>
+            </h4>
+            <div class="text-right">
+              @if ($meal->available == 1)
+                <span class="badge badge-success">Disponibile</span>
+              @else
+                <span class="badge badge-danger">Non disponibile</span>
+              @endif
+            </div>
+          </div>
+        </div>
+        <hr>
+      @endif
     @endforeach
   </div>
+
+  <a class="mt-5 float-left" href="{{route('admin.restaurants.index')}}">
+    << Ritorna ai ristoranti
+  </a>
   
 </div>
 @endsection

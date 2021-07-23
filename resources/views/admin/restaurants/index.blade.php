@@ -2,27 +2,18 @@
 
 @section('content')
 <div class="container">
-  {{-- <div class="col-12 text-center  mt-5">
-    <h1>I miei dati</h1>
-  </div> --}}
-  {{-- <div class="col-12 text-center">
-    <div class="card col-6 m-auto">
-      <div class="card-body">
-        <h6 class="card-title">Nome</h6>
-        <h5 class="card-title">{{ Auth::user()->name}}</h5>
-        <h6 class="card-title">Cognome</h6>
-        <h5 class="card-title">{{ Auth::user()->surname}}</h5>
-        <h6 class="card-title">Email</h6>
-        <h5 class="card-title">{{ Auth::user()->email}}</h5>
-        <h6 class="card-title">P.IVA</h6>
-        <h5 class="card-title">{{ Auth::user()->pIva}}</h5>
-      </div>
-    </div>
-  </div> --}}
-
 
   <div class="col-12 text-center mt-5">
     <h1>I miei ristoranti</h1>
+  </div>
+
+  <div>
+    @if (session('deleted'))
+      <div class="alert alert-success">
+        <strong>{{session('deleted')}}</strong>
+        è stato cancellato correttamente
+      </div>
+    @endif
   </div>
 
 
@@ -31,11 +22,37 @@
       <div class="card row mb-5">
         <div class="d-flex justify-content-between align-items-center">
           <ul class=" list-unstyled m-4">
-            <li class="m-4">{{$restaurant->name}}</li>
-            <li class="m-4">{{$restaurant->address}}</li>
+            <li class="m-4"><strong>Nome:</strong> {{$restaurant->name}}</li>
+            <li class="m-4"><strong>Indirizzo:</strong> {{$restaurant->address}}</li>
+            <ul class="d-flex list-unstyled m-4">
+              @forelse ($restaurant->categories as $category)
+                <li class="m-1">
+                  <h5>
+                    <span class="badge badge-warning">
+                      {{$category->name}}
+                    </span>
+                  </h5>
+                </li>
+              @empty
+                <li class="m-1">-</li>
+              @endforelse
+            </ul>
+            <li class="ml-4 mt-5">
+              <form action="{{route('admin.restaurants.destroy',$restaurant)}}" method="POST">
+                @csrf
+                @method('delete')
+                <button type="submit" class="btn btn-danger">
+                  CANCELLA
+                </button>
+              </form>
+            </li>
           </ul>
   
           <div class="m-5">
+            <a class="btn btn-outline-success" href="{{route('admin.restaurants.edit',$restaurant)}}">
+              Modifica
+            </a>
+
             <a class="btn btn-success" href="{{route('admin.restaurants.show',$restaurant)}}">
               Menù
             </a>
@@ -46,9 +63,15 @@
     
   @endforeach
 
-  <a href="{{route('admin.home')}}">
-    << I miei dati
-  </a>
+  <div class="col-12 d-flex justify-content-between align-items-center">
+    <a class="btn btn-secondary" href="{{route('admin.home')}}">
+      << I miei dati
+    </a>
+  
+    <a class="btn btn-outline-primary mt-5" href="{{route('admin.restaurants.create')}}">
+      Aggiungi ristorante
+    </a> 
+  </div>
 
   
 </div>
