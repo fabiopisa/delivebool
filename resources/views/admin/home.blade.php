@@ -19,20 +19,15 @@
                         </div>
                     </div>
                 </div>
+
                 <a class="btn btn-primary mt-5" href="{{route('admin.restaurants.index')}}">
                     I miei ristoranti
+                </a>   
+
+                <a class="btn btn-primary mt-5" href="{{route('admin.restaurants.create')}}">
+                    Aggiungi ristorante
                 </a>
-                {{-- <div class="card-header">{{ __('Dashboard') }}</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div> --}}
             </div>
         </div>
     </div>
