@@ -1,24 +1,35 @@
 <template>
-  <div class="container">
+<div class="body" :style="{'background-image':'url(../img/bg_up.svg)'}">
+      <div class="container">
+
+    <Header />
+
     <h1>Questa è la home</h1>
-    <router-link class="btn btn-primary" :to="{name:'as'}" >
-      Advanced Search
-    </router-link>
-    <router-link class="btn btn-primary" :to="{name:'as'}" >
-      Resturant/Menu
-    </router-link>
-    <router-link class="btn btn-primary" :to="{name:'account'}" >
-      Sing-in or Login
-    </router-link>
+
+    <Footer />
+
   </div>
+</div>
 </template>
 
 <script>
+import Header from '../components/Home/Header.vue';
+import Footer from '../components/Home/Footer.vue';
 export default {
-  name:'Home'
+  name:'Home',
+  components:{
+      Header,
+      Footer
+  }
 }
 </script>
 
-<style>
+<style lang='scss'>
+body{
+    width: 100%;
+    height: 100vh;
+}
+
+
 
 </style>

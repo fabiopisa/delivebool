@@ -1,4 +1,4 @@
-  
+
 import Vue from 'vue';
 
 import VueRouter from 'vue-router';
@@ -13,9 +13,10 @@ import Dashboard from './pages/Dashboard.vue';
 import Orders from './pages/Orders.vue';
 import Foods from './pages/Foods.vue';
 import AddEditFood from './pages/AddEditFood.vue';
+import Cart from './pages/Cart.vue';
 
 const router = new VueRouter({
-  
+
   mode: 'history',
   linkExactActiveClass:'active',
   routes:[
@@ -60,7 +61,12 @@ const router = new VueRouter({
       name: 'addeditfood',
       component: AddEditFood
     },
-    
+    {
+      path:'/cart',
+      name: 'cart',
+      component: Cart
+    },
+
   ]
 })
 
