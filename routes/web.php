@@ -28,6 +28,7 @@ Route::prefix('admin')
     ->group(function(){
         Route::get('/', 'HomeController@index')->name('home');
         Route::resource('/restaurants','RestaurantController');
+        Route::resource('/meals','MealController');
     });
 
 Route::get('{any?}', function(){

@@ -5,6 +5,15 @@
   <h1>I miei piatti</h1>
 
   <div>
+    @if (session('deleted'))
+      <div class="alert alert-success">
+        <strong>{{session('deleted')}}</strong>
+        è stato cancellato correttamente
+      </div>
+    @endif
+  </div>
+
+  <div>
     @foreach ($meals as $meal)
       @if ($meal->restaurant_id === $restaurant->id)
         <div class="col-12 row mt-5 d-flex align-items-center">
@@ -15,27 +24,54 @@
           <div class="col-8 text-left" >
             <p>{{$meal->description}}</p>
             <h4>
-              <span class="badge badge-info">
+              <span class="badge badge-warning">
                 Prezzo: {{$meal->price}}€
               </span>
             </h4>
             <div class="text-right">
               @if ($meal->available == 1)
-                <span class="badge badge-success">Disponibile</span>
+                <span
+                onclick="$meal->available = 0"
+                class="badge badge-success">
+                  Disponibile
+                </span>
               @else
-                <span class="badge badge-danger">Non disponibile</span>
+                <span 
+                onclick="$meal->available = 1"
+                class="badge badge-danger">
+                  Non disponibile
+                </span>
               @endif
             </div>
           </div>
+        </div>
+        <div class=" col-12 mt-5 d-flex justify-content-between">
+          <a 
+          class="btn btn-outline-info"
+          href="{{route('admin.meals.edit',$meal)}}">
+            Modifica Piatto
+          </a>
+          <form action="{{route('admin.meals.destroy',$meal)}}" method="POST">
+            @csrf
+            @method('delete')
+            <button type="submit" class="btn btn-danger">
+              CANCELLA
+            </button>
+          </form>
         </div>
         <hr>
       @endif
     @endforeach
   </div>
 
-  <a class="mt-5 float-left" href="{{route('admin.restaurants.index')}}">
-    << Ritorna ai ristoranti
-  </a>
+  <div class="col-12 mt-5 d-flex justify-content-between">
+    <a class="" href="{{route('admin.restaurants.index')}}">
+      << Ritorna ai ristoranti
+    </a>
+    <a class="btn btn-outline-success" href="{{route('admin.meals.create')}}">
+      Aggiungi un piatto
+    </a>
+  </div>
   
 </div>
 @endsection
