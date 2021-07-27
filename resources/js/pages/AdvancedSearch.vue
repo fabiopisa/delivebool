@@ -8,6 +8,9 @@
       <router-link class="btn btn-secondary" :to="{name:'home'}">
         Return Home
       </router-link>
+      <router-link class="btn btn-primary" :to="{name:'cart'}">
+                <i class="fas fa-shopping-cart"></i>
+      </router-link>
     </div>
   </section>
 </template>
