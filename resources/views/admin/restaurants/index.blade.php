@@ -48,13 +48,16 @@
             </li>
           </ul>
   
-          <div class="m-5">
+          <div class="m-5 col-2 text-center">
             <a class="btn btn-outline-success" href="{{route('admin.restaurants.edit',$restaurant)}}">
               Modifica
             </a>
 
             <a class="btn btn-success" href="{{route('admin.restaurants.show',$restaurant)}}">
               Menù
+            </a>
+            <a class="btn btn-outline-secondary mt-3" href="{{route('admin.orders.show',$restaurant)}}">
+              Ordini
             </a>
           </div>
         </div>

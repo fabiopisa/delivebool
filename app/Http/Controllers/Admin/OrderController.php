@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Customer;
 use App\Http\Controllers\Controller;
 use App\Meal;
+use App\Order;
 use Illuminate\Http\Request;
-use App\Http\Requests\MealRequest;
+use Illuminate\Support\Facades\DB;
 use App\Restaurant;
-use App\User;
 
-class MealController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +19,7 @@ class MealController extends Controller
      */
     public function index()
     {
-        //
+    
     }
 
     /**
@@ -28,8 +29,7 @@ class MealController extends Controller
      */
     public function create()
     {
-        $restaurants=Restaurant::all();
-        return view('admin.meals.create',compact('restaurants'));
+        //
     }
 
     /**
@@ -38,13 +38,9 @@ class MealController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MealRequest $request)
+    public function store(Request $request)
     {
-        $data = $request->all();
-        $new_meal = new Meal();
-        $new_meal->fill($data);
-        $new_meal->save();
-        return redirect()->route('admin.restaurants.show',$new_meal->restaurant_id);
+        //
     }
 
     /**
@@ -55,7 +51,15 @@ class MealController extends Controller
      */
     public function show($id)
     {
-       
+        $restaurant=Restaurant::find($id);
+        $orders=DB::table('meals')
+            ->join('meal_order','meal_order.meals_id','=','meals.id')
+            ->join('orders','orders.id','=','meal_order.order_id')
+            ->join('customers','customers.id','=','orders.customer_id')
+            ->select('orders.*')
+            ->get();
+        /* dd($orders); */
+        return view('admin.orders.show',compact('orders','restaurant'));
     }
 
     /**
@@ -66,8 +70,7 @@ class MealController extends Controller
      */
     public function edit($id)
     {
-        $meal=Meal::find($id);
-        return view('admin.meals.edit', compact('meal'));
+        //
     }
 
     /**
@@ -77,11 +80,9 @@ class MealController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(MealRequest $request, Meal $meal)
+    public function update(Request $request, $id)
     {
-        $data = $request->all();
-        $meal->update($data);
-        return redirect()->route('admin.restaurants.show',$meal);
+        //
     }
 
     /**
@@ -90,9 +91,8 @@ class MealController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Meal $meal)
+    public function destroy($id)
     {
-        $meal->delete();
-        return redirect()->route('admin.restaurants.show',$meal->restaurant_id)->with('deleted', $meal->name);
+        //
     }
 }

@@ -48,10 +48,10 @@
       class="form-control" type="text" name="restaurant_id" id="restaurant_id"
       @foreach ($restaurants as $restaurant)
         @if (Auth::user()->id === $restaurant->user_id)
-        value="{{$restaurant->id}}"
+          value="{{$restaurant->id}}"
         @endif
       @endforeach
-       readonly="readonly"
+      readonly="readonly"
       >
     </div>
 
