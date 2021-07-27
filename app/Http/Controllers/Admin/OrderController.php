@@ -56,9 +56,20 @@ class OrderController extends Controller
             ->join('meal_order','meal_order.meals_id','=','meals.id')
             ->join('orders','orders.id','=','meal_order.order_id')
             ->join('customers','customers.id','=','orders.customer_id')
-            ->select('orders.*')
+            ->select('orders.*','meals.*','customers.*','meal_order.*')
+            ->where('orders.restaurant_id', '=',$id)
             ->get();
         /* dd($orders); */
+        /* $orders = DB::table('orders')
+            ->join('customers','customers.id','=','orders.customer_id')
+            ->where('orders.restaurant_id', '=',$id)
+            ->get();
+        dd($orders); */
+        /* $piatti = DB::table('meals')
+            ->join('meal_order','meal_order.meals_id','=','meals.id')
+            ->join('orders','orders.id','=','meal_order.order_id')
+            ->get(); */
+        /* dd($piatti); */
         return view('admin.orders.show',compact('orders','restaurant'));
     }
 

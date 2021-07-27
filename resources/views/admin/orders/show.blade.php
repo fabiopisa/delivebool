@@ -8,13 +8,35 @@
   </div>
 
   <div class="col-12">
-    @foreach ($orders as $order)
-      @if ($order->restaurant_id === $restaurant->id)
-        <ul>
-          <li>{{$order->customer_id}}</li>
-        </ul>
-      @endif
-    @endforeach
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">id ordine</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach ($orders as $order)
+        <tr>
+          <th scope="row">{{$order->id}}</th>
+          <td>{{$order->name}}</td>
+          <td>{{$order->surname}}</td>
+          <td>{{$order->address}}</td>
+          <td>
+            <ul>
+              @foreach ($order->meals as $meal)
+                <li>
+                  <h1>{{$meal}}</h1>
+                </li>
+              @endforeach
+            </ul>
+          </td>
+        </tr>
+        @endforeach
+      </tbody>
+    </table>
   </div>
 
   <div class="col-12 d-flex justify-content-between align-items-center">
