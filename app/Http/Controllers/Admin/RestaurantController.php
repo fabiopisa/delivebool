@@ -80,6 +80,7 @@ class RestaurantController extends Controller
         return view('admin.restaurants.show', compact('meals','restaurant'));
     }
 
+
     /**
      * Show the form for editing the specified resource.
      *
