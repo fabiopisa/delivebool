@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
             OrdersTableSeeder::class,
             MealOrderSeeder::class,
             CustomersTableSeeder::class,
-            UpdateOrdersSeeder::class
+            UpdateOrdersSeeder::class,
+            UpdateCustomersSeeder::class
         ]);
     }
 }

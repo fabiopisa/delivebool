@@ -17,10 +17,10 @@ class CreateMealOrderTable extends Migration
             $table->id();
             
             //creo la colonna che collego alla tabella meals per la fk
-            $table->unsignedBigInteger('meals_id');
+            $table->unsignedBigInteger('meal_id');
 
             //collego la colonna che ho creato per la fk della tabella meals all'id della tabella meals
-            $table->foreign('meals_id')
+            $table->foreign('meal_id')
                 ->references('id')
                 ->on('meals')
                 ->onDelete('cascade');

@@ -15,27 +15,27 @@ class MealOrderSeeder extends Seeder
     public function run()
     {
         DB::table('meal_order')->insert([
-            'meals_id'=>2,
+            'meal_id'=>2,
             'order_id'=>1,
             'quantity'=>rand(1,5)
         ]);
         DB::table('meal_order')->insert([
-            'meals_id'=>5,
+            'meal_id'=>5,
             'order_id'=>1,
             'quantity'=>rand(1,5)
         ]);
         DB::table('meal_order')->insert([
-            'meals_id'=>1,
+            'meal_id'=>1,
             'order_id'=>5,
             'quantity'=>rand(1,5)
         ]);
         DB::table('meal_order')->insert([
-            'meals_id'=>9,
+            'meal_id'=>9,
             'order_id'=>3,
             'quantity'=>rand(1,5)
         ]);
         DB::table('meal_order')->insert([
-            'meals_id'=>3,
+            'meal_id'=>3,
             'order_id'=>2,
             'quantity'=>rand(1,5)
         ]);
