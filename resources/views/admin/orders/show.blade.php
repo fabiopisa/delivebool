@@ -12,29 +12,39 @@
       <thead>
         <tr>
           <th scope="col">id ordine</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
+
+          <th scope="col">Nome</th>
+          <th scope="col">Cognome</th>
+          <th scope="col">Indirizzo</th>
+          <th scope="col">piatti</th>
+          <th scope="col">prezzo</th>
+
         </tr>
       </thead>
       <tbody>
         @foreach ($orders as $order)
+        @if ($order->restaurant_id === $restaurant->id)
         <tr>
-          <th scope="row">{{$order->id}}</th>
-          <td>{{$order->name}}</td>
-          <td>{{$order->surname}}</td>
-          <td>{{$order->address}}</td>
+          <td>{{$order->id}}</td>
+          <td>{{$order->customer->name}}</td>
+          <td>{{$order->customer->surname}}</td>
+          <td>{{$order->customer->address}} | n {{$order->customer->house_num}} | intern. {{$order->customer->intern}}</td>
           <td>
             <ul>
               @foreach ($order->meals as $meal)
-                <li>
-                  <h1>{{$meal}}</h1>
-                </li>
+              <li>
+                {{$meal->name}}
+              </li>
+                  
               @endforeach
             </ul>
           </td>
+
+          <td>{{$order->price}}</td>
         </tr>
-        @endforeach
+      @endif
+    @endforeach
+
       </tbody>
     </table>
   </div>
