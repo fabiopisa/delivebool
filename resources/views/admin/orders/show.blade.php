@@ -8,17 +8,17 @@
   </div>
 
   <div class="col-12">
-    
-
     <table class="table">
       <thead>
         <tr>
           <th scope="col">id ordine</th>
+
           <th scope="col">Nome</th>
           <th scope="col">Cognome</th>
           <th scope="col">Indirizzo</th>
           <th scope="col">piatti</th>
           <th scope="col">prezzo</th>
+
         </tr>
       </thead>
       <tbody>
@@ -44,6 +44,7 @@
         </tr>
       @endif
     @endforeach
+
       </tbody>
     </table>
   </div>
