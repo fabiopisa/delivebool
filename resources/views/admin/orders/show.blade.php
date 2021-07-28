@@ -19,21 +19,23 @@
       </thead>
       <tbody>
         @foreach ($orders as $order)
+        @if($order->restaurant_id === $restaurant->id )
         <tr>
-          <th scope="row">{{$order->id}}</th>
-          <td>{{$order->name}}</td>
-          <td>{{$order->surname}}</td>
-          <td>{{$order->address}}</td>
-          <td>
-            <ul>
-              @foreach ($order->meals as $meal)
-                <li>
-                  <h1>{{$meal}}</h1>
-                </li>
-              @endforeach
-            </ul>
-          </td>
-        </tr>
+            <th scope="row">{{$order->id}}</th>
+            <td>{{$order->name}}</td>
+            <td>{{$order->surname}}</td>
+            <td>{{$order->address}}</td>
+            <td>
+              <ul>
+                @foreach ($order->meals as $meal)
+                  <li>
+                    <h1>{{$meal}}</h1>
+                  </li>
+                @endforeach
+              </ul>
+            </td>
+          </tr>
+        @endif
         @endforeach
       </tbody>
     </table>
@@ -43,12 +45,12 @@
     <a class="btn btn-secondary" href="{{route('admin.home')}}">
       << I miei dati
     </a>
-  
+
     <a class="btn btn-outline-primary mt-5" href="{{route('admin.restaurants.create')}}">
       Aggiungi ristorante
-    </a> 
+    </a>
   </div>
 
-  
+
 </div>
 @endsection

@@ -11,7 +11,7 @@ import Restaurant from './pages/Restaurant.vue';
 import Account from './pages/Account.vue';
 import Dashboard from './pages/Dashboard.vue';
 import Orders from './pages/Orders.vue';
-import Foods from './pages/Foods.vue';
+import Meals from './pages/Meals.vue';
 import AddEditFood from './pages/AddEditFood.vue';
 import Cart from './pages/Cart.vue';
 
@@ -52,9 +52,9 @@ const router = new VueRouter({
       component: Orders
     },
     {
-      path:'/foods',
-      name: 'foods',
-      component: Foods
+      path:'/restaurant/:id',
+      name: 'meals',
+      component: Meals
     },
     {
       path:'/addeditfood',

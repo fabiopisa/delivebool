@@ -19,7 +19,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-    
+
     }
 
     /**
@@ -51,14 +51,16 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        $restaurant=Restaurant::find($id);
-        $orders=DB::table('meals')
+         $restaurant=Restaurant::find($id);
+         $order= Order::all();
+        /* $orders=DB::table('meals')
             ->join('meal_order','meal_order.meals_id','=','meals.id')
             ->join('orders','orders.id','=','meal_order.order_id')
             ->join('customers','customers.id','=','orders.customer_id')
             ->select('orders.*','meals.*','customers.*','meal_order.*')
             ->where('orders.restaurant_id', '=',$id)
-            ->get();
+            ->get(); */
+
         /* dd($orders); */
         /* $orders = DB::table('orders')
             ->join('customers','customers.id','=','orders.customer_id')
@@ -70,7 +72,7 @@ class OrderController extends Controller
             ->join('orders','orders.id','=','meal_order.order_id')
             ->get(); */
         /* dd($piatti); */
-        return view('admin.orders.show',compact('orders','restaurant'));
+        return view('admin.orders.show',compact('order','restaurant'));
     }
 
     /**
