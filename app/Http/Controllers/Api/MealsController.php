@@ -20,6 +20,7 @@ class MealsController extends Controller
                         'meals.created_at as data creazione',
                         'meals.restaurant_id',
                     )->where('meals.restaurant_id', 'id')->get();
+
             return response()->json($meals);
     }
 
