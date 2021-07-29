@@ -17,60 +17,31 @@ class RestaurantController extends Controller
     public function index()
     {
        /*  $restaurants = Restaurant::all(); */
-       $restaurants= DB::table('users')
-        ->select(
-            'restaurants.id',
-            'restaurants.name',
-            'restaurants.slug',
-            'restaurants.address',
-            'restaurants.created_at as date',
-            'users.name as nome',
-            'users.surname',
-/*          'meals.name as piatto',
-            'meals.img',
-            'meals.available',
-            'meals.description',
-            'meals.price',
-            'meals.created_at as data creazione',
-            'meals.restaurant_id' */
-        )
-        ->join('restaurants','restaurants.user_id', '=', 'users.id')
+       $restaurants= Restaurant::with('meals')
 
-     /*    ->join('meals', 'meals.restaurant_id', '=', 'restaurants.id' ) */
         ->get();
+
         return response()->json($restaurants);
-
-            /* $meals= DB::table('meals')
-                    ->select(
-                        'meals.img',
-                        'meals.available',
-                        'meals.description',
-                        'meals.price',
-                        'meals.created_at as data creazione',
-                        'meals.restaurant_id',
-                        'restaurants.id',
-                        'restaurants.name',
-                        'restaurants.slug',
-                        'restaurants.address',
-                        'restaurants.created_at as date'
-                    )->join('restaurants', 'meals.restaurant_id', '=',  'restaurants.id')
-                     ->get();
-            return response()->json($meals); */
-
     }
+
 
 
     public function show($id)
     {
-        $restaurant = Restaurant::all()->where('id', $id)->with(['user'])->find($id);
-        if($restaurant){
+        $restaurant = Restaurant::find($id);
+
+        $meals= $restaurant->meals;
+
+        return response()->json($meals);
+/*         if($restaurant){
             $data=[
                 'success' => true,
                 'data' => $restaurant
             ];
             return response()->json($data);
         }
-        return response()->json(['success'=>false]);
+        return response()->json(['success'=>false]); */
+
     }
 
 }

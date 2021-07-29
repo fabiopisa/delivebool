@@ -2199,8 +2199,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Meals',
@@ -2213,9 +2211,9 @@ __webpack_require__.r(__webpack_exports__);
     getMeals: function getMeals() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://127.0.0.1:8000/api/meals').then(function (res) {
-        _this.meals = res.data;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://127.0.0.1:8000/api/restaurants' + this.$route.params.id).then(function (res) {
         console.log(res.data);
+        _this.meals = res.data;
       })["catch"](function (err) {
         console.log(err);
       });
@@ -2294,10 +2292,11 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Restaurant',
-  props: ['id'],
   data: function data() {
     return {
       restaurants: []
+      /* api_key: restaurant.id */
+
     };
   },
   methods: {
@@ -4006,19 +4005,11 @@ var render = function() {
       _c("h1", [_vm._v("I miei piatti")]),
       _vm._v(" "),
       _vm._l(_vm.meals, function(meal) {
-        return _c(
-          "section",
-          { key: meal.id, attrs: { id: meal.restaurant_id } },
-          [
-            _vm.meals.restaurant_id === _vm.meals.restaurants.id
-              ? _c("h3", [
-                  _vm._v(
-                    "\n              " + _vm._s(meal.piatto) + "\n          "
-                  )
-                ])
-              : _vm._e()
-          ]
-        )
+        return _c("section", { key: meal.id }, [
+          _c("h3", [
+            _vm._v("\n              " + _vm._s(meal.piatto) + "\n          ")
+          ])
+        ])
       }),
       _vm._v(" "),
       _c(
@@ -4138,7 +4129,7 @@ var render = function() {
               "router-link",
               {
                 staticClass: "btn btn-primary",
-                attrs: { to: { name: "meals", params: { id: _vm.id } } }
+                attrs: { to: { name: "meals", params: { id: restaurant.id } } }
               },
               [_vm._v("\n              Visualizza Menù\n          ")]
             ),

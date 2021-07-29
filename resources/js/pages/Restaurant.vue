@@ -11,7 +11,7 @@
         <h2>{{restaurant.nome}}</h2>
         <h2>{{restaurant.surname}}</h2>
 
-             <router-link class="btn btn-primary" :to="{name:'meals',params:{id}}">
+             <router-link class="btn btn-primary" :to="{name:'meals',params:{id:restaurant.id}}">
                 Visualizza Menù
             </router-link>
 
@@ -31,11 +31,13 @@
 import axios from 'axios';
 export default {
   name:'Restaurant',
-  props:['id'],
   data(){
+
 
       return{
         restaurants:[],
+        /* api_key: restaurant.id */
+
 
       }
   },

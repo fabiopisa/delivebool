@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use App\Restaurant;
 use App\Meal;
 use Illuminate\Http\Request;
 
@@ -19,21 +20,22 @@ class MealsController extends Controller
                         'meals.price',
                         'meals.created_at as data creazione',
                         'meals.restaurant_id',
-                    )->where('meals.restaurant_id', 'id')->get();
+                    )->get();
 
             return response()->json($meals);
     }
 
     public function show($id)
     {
-        $meal = Meal::where('id', $id)->with(['restaurant'])->find($id);
-        if($meal){
+       $restaurant= Meal::with('restaurant')->where('restaurant_id',$id)->get();
+       dump($restaurant);
+        /* if($restaurant){
             $data=[
                 'success' => true,
-                'data' => $meal
+                'data' => $restaurant
             ];
             return response()->json($data);
-        }
-        return response()->json(['success'=>false]);
+        } */
+        return response()->json($restaurant);
     }
 }

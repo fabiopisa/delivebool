@@ -25,7 +25,7 @@ Route::namespace('Api')
     ->name('api.')
     ->group(function(){
         Route::get('restaurants', 'RestaurantController@index')->name('restaurants');
-        Route::get('restaurants/{id}', 'RestaurantController@show')->name('show');
-        Route::get('meals', 'MealsController@index')->name('meals_show');
+        Route::get('meals/{id}', 'MealsController@show')->name('meal');
+/*         Route::get('meals', 'MealsController@index')->name('meals_show'); */
     });
 

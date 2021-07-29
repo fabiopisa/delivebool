@@ -4,10 +4,8 @@
 
         <section
             v-for="meal in meals"
-            :key="meal.id"
-            :id="meal.restaurant_id">
-
-            <h3 v-if="meals.restaurant_id === meals.restaurants.id">
+            :key="meal.id">
+            <h3>
                 {{ meal.piatto }}
             </h3>
 
@@ -32,15 +30,15 @@ export default {
    name:'Meals',
    data(){
        return{
-           meals:[]
-       }
+           meals:[],
+           }
    },
       methods:{
      getMeals(){
-         axios.get('http://127.0.0.1:8000/api/meals')
+         axios.get('http://127.0.0.1:8000/api/restaurants'+this.$route.params.id)
             .then( res => {
-                 this.meals=res.data;
                 console.log(res.data);
+                 this.meals=res.data;
             })
             .catch( err => {
                 console.log(err);
