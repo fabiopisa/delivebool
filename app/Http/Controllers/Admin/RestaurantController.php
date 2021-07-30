@@ -76,7 +76,7 @@ class RestaurantController extends Controller
     public function show($id)
     {
         $meals=Meal::all();
-        $restaurant=Restaurant::find($id);
+        $restaurant=Restaurant::find($id); //errore da aggiornare
         return view('admin.restaurants.show', compact('meals','restaurant'));
     }
 
