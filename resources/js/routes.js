@@ -13,6 +13,8 @@ import Dashboard from './pages/Dashboard.vue';
 import Orders from './pages/Orders.vue';
 import Foods from './pages/Foods.vue';
 import AddEditFood from './pages/AddEditFood.vue';
+//componente per far vedere il menu
+import Menu from './pages/Menu';
 
 const router = new VueRouter({
   
@@ -34,6 +36,12 @@ const router = new VueRouter({
       path:'/restaurant',
       name: 'restaurant',
       component: Restaurant
+    },
+    //aggiungo una rotta per il menu
+    {
+      path:'/menuRestaurant/:id',
+      name:'menuRestaurant',
+      component: Menu
     },
     {
       path:'/account',
