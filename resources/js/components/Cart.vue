@@ -21,7 +21,7 @@ export default {
   methods: {
     removeItemFromCart(product) {
       this.$emit("removeItemFromCart", product);
-    }
+    },
   },
   created(){
     console.log(this.cart)

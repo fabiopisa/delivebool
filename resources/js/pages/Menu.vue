@@ -4,6 +4,7 @@
       <button v-on:click="navigateTo('meals')">vedi piatti ordinati</button>
       {{cart.length}}
       <button v-on:click="navigateTo('cart')">vedi carrello</button>
+      <button v-if="page === 'cart'" v-on:click="removeCart()">cancella carrello</button>
     </header>
     <main>
         <div v-if="page === 'cart'">
@@ -25,7 +26,7 @@
           :description ="meal.description"
           :price ="meal.price"
           :img = "meal.img"
-          :avaiable ="meal.avaiable"
+          :available ="meal.available"
           v-on:addItemToCart="addItemToCart"
           />
 
@@ -52,11 +53,22 @@ export default {
       page : "meals"
     }
   },
+  watch:{
+    cart:{
+      handler(newCart){
+        localStorage.cart = JSON.stringify(newCart); 
+      },
+      deep: true
+    }
+  },
   methods:{
     getMenu(){
       axios.get('http://127.0.0.1:8000/api/restaurants/'+this.$route.params.id)
         .then(res =>{
           this.menu = res.data;
+          console.log('questo è il menu completo');
+          console.log(this.menu);
+          console.log('//questo è il menu completo');
           console.log(res.data);
         })
     },
@@ -70,6 +82,9 @@ export default {
     },
     navigateTo(page){
       this.page = page;
+    },
+    removeCart(){
+      this.cart = [];
     }
   },
   created(){
@@ -78,6 +93,11 @@ export default {
     this.getMenu();
     console.log('sarà partita la chiamata axios? bho dio cane');
     console.log(this.cart);
+  },
+  mounted(){
+    if(localStorage.cart){
+      this.cart = JSON.parse(localStorage.cart);
+    }
   }
 }
 </script>

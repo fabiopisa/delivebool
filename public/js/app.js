@@ -1943,9 +1943,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CardMeal',
-  props: ['id', 'name', 'description', 'price', 'avaiable', 'img'],
+  props: ['id', 'name', 'description', 'price', 'available', 'img'],
   data: function data() {
     return {
       meal: {
@@ -1954,7 +1959,7 @@ __webpack_require__.r(__webpack_exports__);
         description: this.description,
         price: this.price,
         img: this.img,
-        avaiable: this.avaiable
+        available: this.available
       }
     };
   },
@@ -1966,6 +1971,11 @@ __webpack_require__.r(__webpack_exports__);
       console.log(product);
       this.$emit("addItemToCart", product);
     }
+  },
+  created: function created() {
+    console.log('qui faccio vedere meal salvato nel cardmeal');
+    console.log(this.meal);
+    console.log('//qui faccio vedere meal salvato nel cardmeal');
   }
 });
 
@@ -2264,6 +2274,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -2280,12 +2291,23 @@ __webpack_require__.r(__webpack_exports__);
       page: "meals"
     };
   },
+  watch: {
+    cart: {
+      handler: function handler(newCart) {
+        localStorage.cart = JSON.stringify(newCart);
+      },
+      deep: true
+    }
+  },
   methods: {
     getMenu: function getMenu() {
       var _this = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://127.0.0.1:8000/api/restaurants/' + this.$route.params.id).then(function (res) {
         _this.menu = res.data;
+        console.log('questo è il menu completo');
+        console.log(_this.menu);
+        console.log('//questo è il menu completo');
         console.log(res.data);
       });
     },
@@ -2300,6 +2322,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     navigateTo: function navigateTo(page) {
       this.page = page;
+    },
+    removeCart: function removeCart() {
+      this.cart = [];
     }
   },
   created: function created() {
@@ -2308,6 +2333,11 @@ __webpack_require__.r(__webpack_exports__);
     this.getMenu();
     console.log('sarà partita la chiamata axios? bho dio cane');
     console.log(this.cart);
+  },
+  mounted: function mounted() {
+    if (localStorage.cart) {
+      this.cart = JSON.parse(localStorage.cart);
+    }
   }
 });
 
@@ -3662,23 +3692,29 @@ var render = function() {
     _vm._v(" "),
     _c("p", [_vm._v(_vm._s(_vm.description))]),
     _vm._v(" "),
-    _c("h3", [_vm._v(_vm._s(_vm.price))]),
+    _c("h3", [_vm._v(_vm._s(_vm.price) + "€")]),
     _vm._v(" "),
-    _c("h5", [_vm._v(_vm._s(_vm.avaiable))]),
+    _vm.available === 0
+      ? _c("h5", [_vm._v("piatto non disponibile")])
+      : _vm._e(),
     _vm._v(" "),
-    _c("img", { attrs: { src: { img: _vm.img }, alt: "" } }),
+    _vm.available === 1 ? _c("h5", [_vm._v("disponibile")]) : _vm._e(),
     _vm._v(" "),
-    _c(
-      "button",
-      {
-        on: {
-          click: function($event) {
-            return _vm.addItemToCart(_vm.meal)
-          }
-        }
-      },
-      [_vm._v("Aggiungi al carrello")]
-    )
+    _c("img", { attrs: { src: _vm.img, alt: "" } }),
+    _vm._v(" "),
+    _vm.available === 1
+      ? _c(
+          "button",
+          {
+            on: {
+              click: function($event) {
+                return _vm.addItemToCart(_vm.meal)
+              }
+            }
+          },
+          [_vm._v("Aggiungi al carrello")]
+        )
+      : _vm._e()
   ])
 }
 var staticRenderFns = []
@@ -4128,7 +4164,21 @@ var render = function() {
           }
         },
         [_vm._v("vedi carrello")]
-      )
+      ),
+      _vm._v(" "),
+      _vm.page === "cart"
+        ? _c(
+            "button",
+            {
+              on: {
+                click: function($event) {
+                  return _vm.removeCart()
+                }
+              }
+            },
+            [_vm._v("cancella carrello")]
+          )
+        : _vm._e()
     ]),
     _vm._v(" "),
     _c("main", [
@@ -4157,7 +4207,7 @@ var render = function() {
                   description: meal.description,
                   price: meal.price,
                   img: meal.img,
-                  avaiable: meal.avaiable
+                  available: meal.available
                 },
                 on: { addItemToCart: _vm.addItemToCart }
               })
