@@ -26,10 +26,10 @@ class MealController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Restaurant $restaurant)
     {
-        $restaurants=Restaurant::all();
-        return view('admin.meals.create',compact('restaurants'));
+        $restaurant=Restaurant::find($restaurant);
+        return view('admin.meals.create', compact('restaurant'));
     }
 
     /**
@@ -38,13 +38,18 @@ class MealController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MealRequest $request)
+    public function store(MealRequest $request, Restaurant $restaurant)
     {
         $data = $request->all();
         $new_meal = new Meal();
+        $new_meal->restaurant_id=$restaurant->id;
         $new_meal->fill($data);
         $new_meal->save();
-        return redirect()->route('admin.restaurants.show',$new_meal->restaurant_id);
+        /* if(array_key_exists('restaurants',$data)){
+            $new_meal->restaurants()->attach($data['restaurant_id']);
+        } */
+        dd($restaurant);
+        return redirect()->route('admin.restaurants.show',$new_meal);
     }
 
     /**
@@ -66,8 +71,19 @@ class MealController extends Controller
      */
     public function edit($id)
     {
+        $availableText=[
+            [
+                'available'=>'disponibile',
+                'bool'=> 1
+            ],
+            [
+                'available'=>'non disponibile',
+                'bool'=> 0
+            ],
+            
+        ];
         $meal=Meal::find($id);
-        return view('admin.meals.edit', compact('meal'));
+        return view('admin.meals.edit', compact('meal','availableText'));
     }
 
     /**
@@ -81,7 +97,7 @@ class MealController extends Controller
     {
         $data = $request->all();
         $meal->update($data);
-        return redirect()->route('admin.restaurants.show',$meal);
+        return redirect()->route('admin.restaurants.show',$meal->restaurant_id);
     }
 
     /**

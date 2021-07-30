@@ -75,8 +75,15 @@
     <div class="mt-3">
       <label class="label-control" for="available">Disponibilità</label>
       <select class="form-control @error('available') is-invalid @enderror" name="available" id="available">
-        <option value="{{$meal->available = 1}}">Disponibile</option>
-        <option value="{{$meal->available = 0}}">Non Disponibile</option>
+        @foreach ($availableText as $text)
+          <option
+          @if(old('available',$meal->available) == $text['available'])) selected @endif 
+          value="{{$text['bool']}}">
+            {{$text['available']}}
+          </option>
+        @endforeach
+        {{-- <option value="{{$meal->available = 1}}">Disponibile</option>
+        <option value="{{$meal->available = 0}}">Non Disponibile</option> --}}
       </select>
 
       @error('available')

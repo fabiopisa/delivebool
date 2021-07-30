@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
   <div class="col-12 text-center">
-    <h1>Modifica</h1>
+    <h1>Crea Nuovo Piatto</h1>
   </div>
 
   @if ($errors->any())
@@ -16,7 +16,7 @@
     </div>
   @endif
 
-  <form action="{{route('admin.meals.store')}}" method="POST">
+  <form action="{{route('admin.meals.store',$restaurant)}}" method="POST">
     @csrf
     @method('post')
 
@@ -42,7 +42,7 @@
       @enderror
     </div>
 
-    <div class="mt-3 d-none">
+    {{-- <div class="mt-3 ">
       <label class="label-control" for="restaurant_id">Numero identificativo ristoratore</label>
       <input 
       class="form-control" type="text" name="restaurant_id" id="restaurant_id"
@@ -53,7 +53,7 @@
       @endforeach
       readonly="readonly"
       >
-    </div>
+    </div> --}}
 
     <div class="mt-3">
       <label class="label-control" for="price">Prezzo</label>

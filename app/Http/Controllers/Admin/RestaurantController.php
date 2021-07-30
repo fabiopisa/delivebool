@@ -24,6 +24,8 @@ class RestaurantController extends Controller
     {
         $categories=Category::all();
         $restaurants=Restaurant::all();
+        /* $restuarant = Restaurant::findOrFail(); */
+        /* dd($restaurants); */
         return view('admin.restaurants.index', compact('restaurants','categories')); 
     }
 
@@ -75,8 +77,8 @@ class RestaurantController extends Controller
      */
     public function show($id)
     {
-        $meals=Meal::all();
-        $restaurant=Restaurant::find($id); //errore da aggiornare
+        $restaurant = Restaurant::findOrFail($id);
+        $meals = $restaurant->meals;
         return view('admin.restaurants.show', compact('meals','restaurant'));
     }
 
