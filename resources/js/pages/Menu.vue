@@ -1,29 +1,55 @@
 <template>
   <div>
-    <CardMeal
-    v-for="meal in menu.meals"
-    :key = "'m'+meal.id"
-    :id ="meal.id"
-    :name = "meal.name"
-    :description ="meal.description"
-    :price ="meal.price"
-    :avaiable ="meal.avaiable"
-    />
+    <header>
+      <button v-on:click="navigateTo('meals')">vedi piatti ordinati</button>
+      {{cart.length}}
+      <button v-on:click="navigateTo('cart')">vedi carrello</button>
+    </header>
+    <main>
+        <div v-if="page === 'cart'">
+          <Cart v-on:removeItemFromCart="removeItemFromCart" :cart="cart" /> 
+          <!-- questo è il componente del carrello -->
+        </div>
+
+        <div v-if="page === 'meals'">
+          
+          <!-- <CardMeal
+            :meals = "meals"
+          /> -->
+
+          <CardMeal
+          v-for="(meal, index) in menu.meals"
+          :key = "index"
+          :id ="meal.id"
+          :name = "meal.name"
+          :description ="meal.description"
+          :price ="meal.price"
+          :img = "meal.img"
+          :avaiable ="meal.avaiable"
+          v-on:addItemToCart="addItemToCart"
+          />
+
+        </div>
+    </main>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
 import CardMeal from '../components/CardMeal.vue';
+import Cart from '../components/Cart.vue';
 
 export default {
   name: 'Menu',
   components:{
-    CardMeal
+    CardMeal,
+    Cart
   },
   data(){
     return{
-      menu:[]
+      menu:[],
+      cart:[],
+      page : "meals"
     }
   },
   methods:{
@@ -33,7 +59,17 @@ export default {
           this.menu = res.data;
           console.log(res.data);
         })
-
+    },
+    /* metodi relativi al cart */
+    addItemToCart(product){
+      this.cart.push(product);
+      console.log(this.cart);
+    },
+    removeItemFromCart(product){
+      this.cart.splice(this.cart.indexOf(product),1);//splice per sostituire cosa? prende la posizione del prodotto con indexof e lo sostituisce
+    },
+    navigateTo(page){
+      this.page = page;
     }
   },
   created(){
@@ -41,10 +77,43 @@ export default {
     console.log(this.$route.params.id);
     this.getMenu();
     console.log('sarà partita la chiamata axios? bho dio cane');
+    console.log(this.cart);
   }
 }
 </script>
 
 <style>
+body {
+  margin: 0;
+}
+.products {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.products button {
+  padding: 10px;
+  background-color: black;
+  color: white;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+</style>
 
+<style scoped>
+header {
+  height: 60px;
+  box-shadow: 2px 2px 5px blue;
+  background-color: pink;
+  text-align: right;
+  font-size: 30px;
+  padding-top: 20px;
+}
+header button {
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  background-color: green;
+}
 </style>
