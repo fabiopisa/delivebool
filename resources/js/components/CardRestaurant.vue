@@ -2,7 +2,7 @@
   <div class="card flex-row mb-3">
     <h1>{{id}}</h1>
     <h1>nome ristorante {{nome_ristorante}}</h1>
-    <h2>cognome ristorante{{indirizzo_ristorante}}</h2>
+    <h2>indirizzo ristorante{{indirizzo_ristorante}}</h2>
     <h5>proprietario {{nome_proprietario}} {{cognome_proprietario}}</h5>
     <router-link class="btn btn-primary" :to="{name: 'menuRestaurant', params:{id}}" >Menù</router-link>
   </div>
