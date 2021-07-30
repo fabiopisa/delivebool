@@ -1,17 +1,25 @@
 <template>
 
-  <main class="container">
+
+  <div class="app">
+  <Header/>
+    
     <router-view></router-view>
-  </main>
+  </div>
 
 </template>
 
 <script>
+import Header from './components/Home/Header.vue'
 export default {
- name:'App'
+ name:'App',
+ components: {
+    Header
+  },
 }
 </script>
 
 <style lang="scss">
-  @import '../sass/frontoffice/_global';
+  @import '../sass/frontoffice/_global.scss';
+
 </style>

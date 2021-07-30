@@ -23,4 +23,5 @@ Route::namespace('Api') //namespace per il raggruppamento del nome per le rotte 
     ->group(function(){
         Route::get('restaurants', 'RestaurantController@index')->name('api.restaurant'); 
         Route::get('restaurants/{id}','RestaurantController@show')->name('api.restaurantMenu');
+        Route::get('categories','CategoryController@index')->name('api.categories');
     });

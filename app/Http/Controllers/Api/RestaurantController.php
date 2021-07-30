@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Category;
 use App\Http\Controllers\Controller;
 use App\Restaurant;
 use Illuminate\Http\Request;
@@ -38,5 +39,10 @@ class RestaurantController extends Controller
 
         return response()->json($menu);
     }
+
+/*     public function category(){
+        $categories = DB::table('categories');
+        return response()->json($categories);
+    } */
 
 }
