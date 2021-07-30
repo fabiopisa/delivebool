@@ -1,8 +1,9 @@
 <template>
   <div>
     <button class="btn_jb">
-        <router-link :to="{name:'as', props:{id}}">
-            {{name}}
+        <router-link :to="{name:'advancedSearch', params:{name: nome_categoria}}">
+            {{nome_categoria}}
+            <!-- {{category_id}} -->
         </router-link>
     </button>
       
@@ -11,8 +12,12 @@
 
 <script>
 export default {
-name:'CardCategory',
-props:['name','id']
+  name:'CardCategory',
+  props:['nome_categoria','category_id'],
+  mounted(){
+    console.log("questo è card");
+    console.log(this.$route.params.category_id);
+  }
 }
 </script>
 

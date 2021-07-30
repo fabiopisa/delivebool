@@ -45,4 +45,13 @@ class RestaurantController extends Controller
         return response()->json($categories);
     } */
 
+    public function ristorantiCategoria($id){
+        $restaurants = DB::table('restaurant')
+            ->with('categories')
+            ->where('categories.id',$id)
+            ->get();
+        
+        return response()->json($restaurants);
+    }
+
 }

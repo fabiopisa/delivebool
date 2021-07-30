@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Category;
 use App\Http\Controllers\Controller;
+use App\Restaurant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -15,7 +17,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = DB::table('categories')
+            ->select(
+                'categories.id as category_id',
+                'categories.name as nome_categoria'
+            )->get();
         return response()->json($categories);
     }
 
@@ -46,9 +52,16 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($name)
     {
-        //
+        /* $restaurants = DB::table('restaurant')
+        ->with('categories')
+        ->where('categories.name',$name)
+        ->get(); */
+
+        $restaurants = Category::where('name', $name)->with('restaurants')->first();
+    
+    return response()->json($restaurants);
     }
 
     /**

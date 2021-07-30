@@ -28,8 +28,8 @@ const router = new VueRouter({
       component: Home
     },
     {
-      path:'/advancedSearch',
-      name: 'as',
+      path:'/advancedSearch/:name',
+      name: 'advancedSearch',
       component: AdvancedSearch
     },
     {

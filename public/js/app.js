@@ -1950,9 +1950,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CardCategory',
-  props: ['name', 'id']
+  props: ['nome_categoria', 'category_id'],
+  mounted: function mounted() {
+    console.log("questo è card");
+    console.log(this.$route.params.category_id);
+  }
 });
 
 /***/ }),
@@ -2118,6 +2123,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2132,8 +2139,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'AdvancedSearch'
+  name: 'AdvancedSearch',
+  data: function data() {
+    return {
+      ristoranti: []
+    };
+  },
+  methods: {
+    getRistoranti: function getRistoranti() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://127.0.0.1:8000/api/categories/' + this.$route.params.name).then(function (res) {
+        console.log('cerco di associare il ristorante in base alla categoria ');
+        _this.ristoranti = res.data;
+        console.log(_this.ristoranti);
+        console.log("--------------");
+        console.log(res.data);
+        console.log('//cerco di associare il ristorante in base alla categoria ');
+      });
+    }
+  },
+  created: function created() {
+    this.getRistoranti();
+  }
 });
 
 /***/ }),
@@ -2261,10 +2292,16 @@ __webpack_require__.r(__webpack_exports__);
         console.log(_this.categories); //"qui visualizzo l'array di ristoranti che salvo "
 
         console.log(res.data); //"qui visualizzo il risultato della chiamata axios"
+
+        console.log(_this.categories[0].category_id);
       })["catch"](function (err) {
         console.log(err);
       });
     }
+  },
+  mounted: function mounted() {
+    console.log("sodkaoskd");
+    console.log(this.categories);
   },
   created: function created() {
     this.getCategories();
@@ -2318,6 +2355,8 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://127.0.0.1:8000/api/restaurants/' + this.$route.params.id).then(function (res) {
         _this.menu = res.data;
         console.log(res.data);
+      })["catch"](function (err) {
+        return err;
       });
     }
   },
@@ -3762,8 +3801,15 @@ var render = function() {
       [
         _c(
           "router-link",
-          { attrs: { to: { name: "as", props: { id: _vm.id } } } },
-          [_vm._v("\n          " + _vm._s(_vm.name) + "\n      ")]
+          {
+            attrs: {
+              to: {
+                name: "advancedSearch",
+                params: { name: _vm.nome_categoria }
+              }
+            }
+          },
+          [_vm._v("\n          " + _vm._s(_vm.nome_categoria) + "\n          ")]
         )
       ],
       1
@@ -4201,8 +4247,11 @@ var render = function() {
         { staticClass: "jumbotron d-flex flex-wrap justify-content-center" },
         _vm._l(_vm.categories, function(category) {
           return _c("CardCategory", {
-            key: "c" + category.id,
-            attrs: { name: category.name, id: category.id }
+            key: "c" + category.category_id,
+            attrs: {
+              nome_categoria: category.nome_categoria,
+              category_id: category.category_id
+            }
           })
         }),
         1
@@ -19716,7 +19765,7 @@ module.exports = "/images/bg_home-01.jpg?68d29893625ccdb1eb5aee92bfc1cea1";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/logo.svg?806bc9faea6cb10826599c1a51d19501";
+module.exports = "/images/logo.svg?f482eb14465602836c22d83e2bd778df";
 
 /***/ }),
 
@@ -20824,8 +20873,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     name: 'home',
     component: _pages_Home_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   }, {
-    path: '/advancedSearch',
-    name: 'as',
+    path: '/advancedSearch/:name',
+    name: 'advancedSearch',
     component: _pages_AdvancedSearch_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
   }, {
     path: '/restaurant',
@@ -20880,8 +20929,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/giuseppe/Documents/Boolean/delivebool/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/giuseppe/Documents/Boolean/delivebool/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\boolean\progetto finale\delivebool-7\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\boolean\progetto finale\delivebool-7\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

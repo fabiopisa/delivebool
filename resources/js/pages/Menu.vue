@@ -33,6 +33,7 @@ export default {
           this.menu = res.data;
           console.log(res.data);
         })
+        .catch(err => err);
 
     }
   },

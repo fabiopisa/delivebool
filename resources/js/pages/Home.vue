@@ -7,9 +7,9 @@
       <div class="jumbotron d-flex flex-wrap justify-content-center">
         <CardCategory
         v-for="category in categories"
-        :key="'c' + category.id"
-        :name="category.name"
-        :id="category.id"
+        :key="'c' + category.category_id"
+        :nome_categoria="category.nome_categoria"
+        :category_id="category.category_id"
         />
         
       </div>
@@ -48,11 +48,17 @@ export default {
             this.categories = res.data;
             console.log(this.categories); //"qui visualizzo l'array di ristoranti che salvo "
             console.log(res.data); //"qui visualizzo il risultato della chiamata axios"
+
+            console.log(this.categories[0].category_id);
         })
         .catch(err => {
           console.log(err);
         })
     }
+  },
+  mounted(){
+    console.log("sodkaoskd")
+    console.log(this.categories);
   },
   created(){
     this.getCategories();
