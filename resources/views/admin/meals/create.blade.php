@@ -16,7 +16,7 @@
     </div>
   @endif
 
-  <form action="{{route('admin.meals.store',$restaurant)}}" method="POST">
+  <form action="{{route('admin.meals.store')}}" method="POST">
     @csrf
     @method('post')
 
@@ -46,14 +46,26 @@
       <label class="label-control" for="restaurant_id">Numero identificativo ristoratore</label>
       <input 
       class="form-control" type="text" name="restaurant_id" id="restaurant_id"
+      value="{{$restaurant->id}}"
       @foreach ($restaurants as $restaurant)
         @if (Auth::user()->id === $restaurant->user_id)
-          value="{{$restaurant->id}}"
         @endif
       @endforeach
       readonly="readonly"
       >
     </div> --}}
+    <div class="mt-3 ">
+      <label class="label-control" for="restaurant_id">In quale ristorante</label>
+      <select class="form-control" name="restaurant_id" id="restaurant_id">
+        <option value="">Seleziona ristorante</option>
+          @foreach ($restaurants as $restaurant)
+            @if (Auth::user()->id === $restaurant->user_id)
+              <option value="{{$restaurant->id}}">{{$restaurant->name}}</option>
+            @endif
+          @endforeach
+      </select>
+      
+    </div>
 
     <div class="mt-3">
       <label class="label-control" for="price">Prezzo</label>

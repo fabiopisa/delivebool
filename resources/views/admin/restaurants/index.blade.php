@@ -53,7 +53,7 @@
               Modifica
             </a>
 
-            <a class="btn btn-success" href="{{route('admin.restaurants.show',$restaurant)}}">
+            <a class="btn btn-success" href="{{route('admin.restaurants.show',$restaurant->id)}}">
               Menù
             </a>
             <a class="btn btn-outline-secondary mt-3" href="{{route('admin.orders.show',$restaurant)}}">
@@ -70,10 +70,17 @@
     <a class="btn btn-secondary" href="{{route('admin.home')}}">
       << I miei dati
     </a>
+
+    <div class="d-flex align-items-center">
+      <a class="mr-4 btn btn-outline-success" href="{{route('admin.meals.create')}}">
+        Aggiungi un piatto
+      </a>
+      <a class="btn btn-outline-primary " href="{{route('admin.restaurants.create')}}">
+        Aggiungi ristorante
+      </a>
+    </div>
   
-    <a class="btn btn-outline-primary mt-5" href="{{route('admin.restaurants.create')}}">
-      Aggiungi ristorante
-    </a> 
+     
   </div>
 
   

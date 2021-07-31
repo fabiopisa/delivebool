@@ -49,14 +49,11 @@
     </table>
   </div>
 
-  <div class="col-12 d-flex justify-content-between align-items-center">
-    <a class="btn btn-secondary" href="{{route('admin.home')}}">
-      << I miei dati
+  <div class="col-12 mt-5 d-flex justify-content-between">
+    <a class="" href="{{route('admin.restaurants.index')}}">
+      << Ritorna ai ristoranti
     </a>
-  
-    <a class="btn btn-outline-primary mt-5" href="{{route('admin.restaurants.create')}}">
-      Aggiungi ristorante
-    </a> 
+    
   </div>
 
   

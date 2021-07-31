@@ -68,9 +68,7 @@
     <a class="" href="{{route('admin.restaurants.index')}}">
       << Ritorna ai ristoranti
     </a>
-    <a class="btn btn-outline-success" href="{{route('admin.meals.create',$restaurant)}}">
-      Aggiungi un piatto
-    </a>
+    
   </div>
   
 </div>

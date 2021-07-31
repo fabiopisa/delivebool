@@ -26,10 +26,10 @@ class MealController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Restaurant $restaurant)
+    public function create()
     {
-        $restaurant=Restaurant::find($restaurant);
-        return view('admin.meals.create', compact('restaurant'));
+        $restaurants=Restaurant::all();
+        return view('admin.meals.create', compact('restaurants'));
     }
 
     /**
@@ -38,18 +38,13 @@ class MealController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MealRequest $request, Restaurant $restaurant)
+    public function store(MealRequest $request)
     {
         $data = $request->all();
         $new_meal = new Meal();
-        $new_meal->restaurant_id=$restaurant->id;
         $new_meal->fill($data);
         $new_meal->save();
-        /* if(array_key_exists('restaurants',$data)){
-            $new_meal->restaurants()->attach($data['restaurant_id']);
-        } */
-        dd($restaurant);
-        return redirect()->route('admin.restaurants.show',$new_meal);
+        return redirect()->route('admin.restaurants.show',$new_meal->restaurant_id);
     }
 
     /**
