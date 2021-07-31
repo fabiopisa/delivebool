@@ -108,13 +108,11 @@
   </form>
 
   <div class="col-12 d-flex justify-content-between align-items-center">
-    {{-- <a class="btn btn-secondary" href="{{route('admin.restaurants.show',$restaurant->id)}}">
-      << I miei piatti
-    </a> --}}
+  
     <a class="btn btn-success mt-5" href="{{route('admin.restaurants.index')}}">
       I miei ristoranti
     </a> 
   </div> 
-  {{-- Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus magnam veritatis ipsa non facilis maiores tempora obcaecati soluta dolorum, animi delectus at ducimus dolor aut labore atque odio illum. Quae? --}}
+
 </div>
 @endsection

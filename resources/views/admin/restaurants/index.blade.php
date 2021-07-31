@@ -16,6 +16,23 @@
     @endif
   </div>
 
+  <div class="col-12 d-flex justify-content-between align-items-center mb-4 mt-4">
+    <a class="btn btn-secondary" href="{{route('admin.home')}}">
+      << I miei dati
+    </a>
+
+    <div class="d-flex align-items-center">
+      <a class="mr-4 btn btn-outline-success" href="{{route('admin.meals.create')}}">
+        Aggiungi un piatto
+      </a>
+      <a class="btn btn-outline-primary " href="{{route('admin.restaurants.create')}}">
+        Aggiungi ristorante
+      </a>
+    </div>
+  
+     
+  </div>
+
 
   @foreach ($restaurants as $restaurant)
     @if (Auth::user()->id === $restaurant->user_id)
@@ -66,7 +83,7 @@
     
   @endforeach
 
-  <div class="col-12 d-flex justify-content-between align-items-center">
+  {{-- <div class="col-12 d-flex justify-content-between align-items-center">
     <a class="btn btn-secondary" href="{{route('admin.home')}}">
       << I miei dati
     </a>
@@ -81,7 +98,7 @@
     </div>
   
      
-  </div>
+  </div> --}}
 
   
 </div>

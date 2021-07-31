@@ -58,8 +58,10 @@ class OrderController extends Controller
         /* dd($restaurant); */
         $orders = $restaurant->orders;
         /* dd($orders); */
-        /* $customer = Customer::find($orders->customer_id); */
+        /* $customer = $orders->customers;
+        $customer = Customer::find($orders->customer_id); */
         /* dd($orders); */
+        /* $customers=Customer::all(); */
         return view('admin.orders.show', compact('orders','restaurant'));
     }
 

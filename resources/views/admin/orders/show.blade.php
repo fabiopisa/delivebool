@@ -23,7 +23,7 @@
       </thead>
       <tbody>
         @foreach ($orders as $order)
-        @if ($order->restaurant_id === $restaurant->id)
+
         <tr>
           <td>{{$order->id}}</td>
           <td>{{$order->customer->name}}</td>
@@ -42,7 +42,7 @@
 
           <td>{{$order->price}}</td>
         </tr>
-      @endif
+
     @endforeach
 
       </tbody>
