@@ -29,8 +29,6 @@
         Aggiungi ristorante
       </a>
     </div>
-  
-     
   </div>
 
 
@@ -82,24 +80,6 @@
     @endif
     
   @endforeach
-
-  {{-- <div class="col-12 d-flex justify-content-between align-items-center">
-    <a class="btn btn-secondary" href="{{route('admin.home')}}">
-      << I miei dati
-    </a>
-
-    <div class="d-flex align-items-center">
-      <a class="mr-4 btn btn-outline-success" href="{{route('admin.meals.create')}}">
-        Aggiungi un piatto
-      </a>
-      <a class="btn btn-outline-primary " href="{{route('admin.restaurants.create')}}">
-        Aggiungi ristorante
-      </a>
-    </div>
-  
-     
-  </div> --}}
-
   
 </div>
 @endsection
