@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
   <div class="col-12 text-center">
-    <h1>Modifica</h1>
+    <h1>Crea Nuovo Piatto</h1>
   </div>
 
   @if ($errors->any())
@@ -42,17 +42,29 @@
       @enderror
     </div>
 
-    <div class="mt-3 d-none">
+    {{-- <div class="mt-3 ">
       <label class="label-control" for="restaurant_id">Numero identificativo ristoratore</label>
       <input 
       class="form-control" type="text" name="restaurant_id" id="restaurant_id"
+      value="{{$restaurant->id}}"
       @foreach ($restaurants as $restaurant)
         @if (Auth::user()->id === $restaurant->user_id)
-          value="{{$restaurant->id}}"
         @endif
       @endforeach
       readonly="readonly"
       >
+    </div> --}}
+    <div class="mt-3 ">
+      <label class="label-control" for="restaurant_id">In quale ristorante</label>
+      <select class="form-control" name="restaurant_id" id="restaurant_id">
+        <option value="">Seleziona ristorante</option>
+          @foreach ($restaurants as $restaurant)
+            @if (Auth::user()->id === $restaurant->user_id)
+              <option value="{{$restaurant->id}}">{{$restaurant->name}}</option>
+            @endif
+          @endforeach
+      </select>
+      
     </div>
 
     <div class="mt-3">
@@ -96,13 +108,11 @@
   </form>
 
   <div class="col-12 d-flex justify-content-between align-items-center">
-    {{-- <a class="btn btn-secondary" href="{{route('admin.restaurants.show',$restaurant->id)}}">
-      << I miei piatti
-    </a> --}}
+  
     <a class="btn btn-success mt-5" href="{{route('admin.restaurants.index')}}">
       I miei ristoranti
     </a> 
   </div> 
-  {{-- Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus magnam veritatis ipsa non facilis maiores tempora obcaecati soluta dolorum, animi delectus at ducimus dolor aut labore atque odio illum. Quae? --}}
+
 </div>
 @endsection

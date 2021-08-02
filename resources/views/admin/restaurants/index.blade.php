@@ -16,6 +16,21 @@
     @endif
   </div>
 
+  <div class="col-12 d-flex justify-content-between align-items-center mb-4 mt-4">
+    <a class="btn btn-secondary" href="{{route('admin.home')}}">
+      << I miei dati
+    </a>
+
+    <div class="d-flex align-items-center">
+      <a class="mr-4 btn btn-outline-success" href="{{route('admin.meals.create')}}">
+        Aggiungi un piatto
+      </a>
+      <a class="btn btn-outline-primary " href="{{route('admin.restaurants.create')}}">
+        Aggiungi ristorante
+      </a>
+    </div>
+  </div>
+
 
   @foreach ($restaurants as $restaurant)
     @if (Auth::user()->id === $restaurant->user_id)
@@ -53,7 +68,7 @@
               Modifica
             </a>
 
-            <a class="btn btn-success" href="{{route('admin.restaurants.show',$restaurant)}}">
+            <a class="btn btn-success" href="{{route('admin.restaurants.show',$restaurant->id)}}">
               Menù
             </a>
             <a class="btn btn-outline-secondary mt-3" href="{{route('admin.orders.show',$restaurant)}}">
@@ -65,17 +80,6 @@
     @endif
     
   @endforeach
-
-  <div class="col-12 d-flex justify-content-between align-items-center">
-    <a class="btn btn-secondary" href="{{route('admin.home')}}">
-      << I miei dati
-    </a>
-  
-    <a class="btn btn-outline-primary mt-5" href="{{route('admin.restaurants.create')}}">
-      Aggiungi ristorante
-    </a> 
-  </div>
-
   
 </div>
 @endsection

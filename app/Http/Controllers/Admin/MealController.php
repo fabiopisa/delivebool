@@ -29,7 +29,7 @@ class MealController extends Controller
     public function create()
     {
         $restaurants=Restaurant::all();
-        return view('admin.meals.create',compact('restaurants'));
+        return view('admin.meals.create', compact('restaurants'));
     }
 
     /**
@@ -66,8 +66,19 @@ class MealController extends Controller
      */
     public function edit($id)
     {
+        $availableText=[
+            [
+                'available'=>'disponibile',
+                'bool'=> 1
+            ],
+            [
+                'available'=>'non disponibile',
+                'bool'=> 0
+            ],
+            
+        ];
         $meal=Meal::find($id);
-        return view('admin.meals.edit', compact('meal'));
+        return view('admin.meals.edit', compact('meal','availableText'));
     }
 
     /**
@@ -81,7 +92,7 @@ class MealController extends Controller
     {
         $data = $request->all();
         $meal->update($data);
-        return redirect()->route('admin.restaurants.show',$meal);
+        return redirect()->route('admin.restaurants.show',$meal->restaurant_id);
     }
 
     /**
