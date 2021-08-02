@@ -71,6 +71,10 @@ export default {
           console.log('//questo è il menu completo');
           console.log(res.data);
         })
+
+        .catch(err => err);
+
+
     },
     /* metodi relativi al cart */
     addItemToCart(product){
@@ -85,6 +89,7 @@ export default {
     },
     removeCart(){
       this.cart = [];
+
     }
   },
   created(){
