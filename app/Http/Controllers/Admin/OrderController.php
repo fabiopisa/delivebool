@@ -51,10 +51,18 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        $restaurant=Restaurant::find($id);
+        /* $restaurant=Restaurant::find($id);
         $orders=Order::all();
+        return view('admin.orders.show',compact('orders','restaurant')); */
+        $restaurant = Restaurant::findOrFail($id);
+        /* dd($restaurant); */
+        $orders = $restaurant->orders;
         /* dd($orders); */
-        return view('admin.orders.show',compact('orders','restaurant'));
+        /* $customer = $orders->customers;
+        $customer = Customer::find($orders->customer_id); */
+        /* dd($orders); */
+        /* $customers=Customer::all(); */
+        return view('admin.orders.show', compact('orders','restaurant'));
     }
 
     /**
