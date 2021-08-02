@@ -2,6 +2,13 @@
   <section>
     <div class="container">
       <!-- fare una card dei ristoranti dove passo array ristoranti.restaurants -->
+      <CardRestaurant1
+      v-for="ristorante in ristoranti.restaurants"
+      :key="'r'+ristorante.id"
+      :id="ristorante.id"
+      :nome_ristorante="ristorante.name"
+      :indirizzo_ristorante="ristorante.address"
+      />
       <h1>Cerca qui</h1>
       <router-link class="btn btn-primary" :to="{name:'restaurant'}" >
         Resturant/Menu
@@ -15,9 +22,12 @@
 
 <script>
 import axios from 'axios';
-
+import CardRestaurant1 from '../components/CardRestaurant1.vue';
 export default {
   name:'AdvancedSearch',
+  components:{
+    CardRestaurant1
+  },
   data(){
     return{
       ristoranti:[]
