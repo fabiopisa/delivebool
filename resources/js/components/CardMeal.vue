@@ -1,5 +1,5 @@
 <template>
-  <div class="card flex-row mb-3">
+  <div class="card mb-3 flex-row">
     <h1>{{id}}</h1>
     <h1>{{name}}</h1>
     <p>{{description}}</p>

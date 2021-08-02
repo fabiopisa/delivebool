@@ -1,12 +1,12 @@
 <template>
   <div>
-    <header>
-      <button v-on:click="navigateTo('meals')">vedi piatti ordinati</button>
+    <header class="mb-4">
+      <button class="btn" v-on:click="navigateTo('meals')">vedi piatti ordinati</button>
       {{cart.length}}
-      <button v-on:click="navigateTo('cart')">vedi carrello</button>
-      <button v-if="page === 'cart'" v-on:click="removeCart()">cancella carrello</button>
+      <button class="btn" v-on:click="navigateTo('cart')">vedi carrello</button>
+      <button class="btn" v-if="page === 'cart'" v-on:click="removeCart()">cancella carrello</button>
     </header>
-    <main>
+    <main class="container">
         <div v-if="page === 'cart'">
           <Cart v-on:removeItemFromCart="removeItemFromCart" :cart="cart" /> 
           <!-- questo è il componente del carrello -->
@@ -17,8 +17,9 @@
           <!-- <CardMeal
             :meals = "meals"
           /> -->
-
+          <div class="row d-flex p-3">
           <CardMeal
+          class=""
           v-for="(meal, index) in menu.meals"
           :key = "index"
           :id ="meal.id"
@@ -29,6 +30,7 @@
           :available ="meal.available"
           v-on:addItemToCart="addItemToCart"
           />
+          </div>
 
         </div>
     </main>
@@ -135,7 +137,6 @@ header {
   padding-top: 20px;
 }
 header button {
-  padding: 10px;
   border: none;
   cursor: pointer;
   color: white;

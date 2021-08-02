@@ -15,8 +15,8 @@ export default {
   name:'CardCategory',
   props:['nome_categoria','category_id'],
   mounted(){
-    console.log("questo è card");
-    console.log(this.$route.params.category_id);
+  /*   console.log("questo è card");
+    console.log(this.$route.params.category_id); */
   }
 }
 </script>

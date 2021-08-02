@@ -2,14 +2,31 @@
   <section>
     <div class="container">
       <!-- fare una card dei ristoranti dove passo array ristoranti.restaurants -->
-      <CardRestaurant1
-      v-for="ristorante in ristoranti.restaurants"
-      :key="'r'+ristorante.id"
-      :id="ristorante.id"
-      :nome_ristorante="ristorante.name"
-      :indirizzo_ristorante="ristorante.address"
-      />
-      <h1>Cerca qui</h1>
+      <!-- v-if="ristoranti.restaurants !== undefined" -->
+      <div
+      v-if="nRistoranti === 1"
+      >
+      <div class="row">
+
+        <CardRestaurant1
+        class="col-xs-4 mr-4"
+        v-for="ristorante in ristoranti.restaurants"
+        :key="'r'+ristorante.id"
+        :id="ristorante.id"
+        :nome_ristorante="ristorante.name"
+        :indirizzo_ristorante="ristorante.address"
+        />
+      </div>
+      </div>
+
+      <!-- v-if="ristoranti.restaurants.length === 0" -->
+      <div
+      v-else
+      >
+      <h1>nessun ristorante trovato</h1>
+      </div>
+      
+      <h5>Cerca qui</h5>
       <router-link class="btn btn-primary" :to="{name:'restaurant'}" >
         Resturant/Menu
       </router-link>
@@ -30,7 +47,8 @@ export default {
   },
   data(){
     return{
-      ristoranti:[]
+      ristoranti:[],
+      nRistoranti : 0
     }
   },
   methods:{
@@ -39,7 +57,9 @@ export default {
       .then(res =>{
         console.log('cerco di associare il ristorante in base alla categoria ');
           this.ristoranti = res.data;
-          console.log(this.ristoranti);
+
+          console.log(this.ristoranti.restaurants.length);
+          if(this.ristoranti.restaurants.length > 0) this.nRistoranti = 1;
           console.log("--------------");
           console.log(res.data);
         console.log('//cerco di associare il ristorante in base alla categoria ');
@@ -47,6 +67,7 @@ export default {
     }
   },
   created(){
+    this.nRistoranti = 0;
     this.getRistoranti();
   }
 }
