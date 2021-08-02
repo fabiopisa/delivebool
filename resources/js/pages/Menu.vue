@@ -1,11 +1,11 @@
 <template>
-  <div>
-    <header class="mb-4">
+  <div class="sfondo">
+    <nav class="">
       <button class="btn" v-on:click="navigateTo('meals')">vedi piatti ordinati</button>
       {{cart.length}}
       <button class="btn" v-on:click="navigateTo('cart')">vedi carrello</button>
       <button class="btn" v-if="page === 'cart'" v-on:click="removeCart()">cancella carrello</button>
-    </header>
+    </nav>
     <main class="container">
         <div v-if="page === 'cart'">
           <Cart v-on:removeItemFromCart="removeItemFromCart" :cart="cart" /> 
@@ -17,19 +17,19 @@
           <!-- <CardMeal
             :meals = "meals"
           /> -->
-          <div class="row d-flex p-3">
-          <CardMeal
-          class=""
-          v-for="(meal, index) in menu.meals"
-          :key = "index"
-          :id ="meal.id"
-          :name = "meal.name"
-          :description ="meal.description"
-          :price ="meal.price"
-          :img = "meal.img"
-          :available ="meal.available"
-          v-on:addItemToCart="addItemToCart"
-          />
+          <div class="row d-flex ">
+            <CardMeal
+            class=""
+            v-for="(meal, index) in menu.meals"
+            :key = "index"
+            :id ="meal.id"
+            :name = "meal.name"
+            :description ="meal.description"
+            :price ="meal.price"
+            :img = "meal.img"
+            :available ="meal.available"
+            v-on:addItemToCart="addItemToCart"
+            />
           </div>
 
         </div>
@@ -109,37 +109,32 @@ export default {
 }
 </script>
 
-<style>
-body {
-  margin: 0;
-}
-.products {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-.products button {
-  padding: 10px;
-  background-color: black;
-  color: white;
-  outline: none;
-  border: none;
-  cursor: pointer;
-}
-</style>
+<style lang='scss' scope>
+  .sfondo{
+    background-image: url('../../assets/img/bg-res-01.jpg');
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+  }
+  
+  .products {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .products button {
+    padding: 10px;
+    background-color: black;
+    color: white;
+    outline: none;
+    border: none;
+    cursor: pointer;
+  }
 
-<style scoped>
-header {
-  height: 60px;
-  box-shadow: 2px 2px 5px blue;
-  background-color: pink;
-  text-align: right;
-  font-size: 30px;
-  padding-top: 20px;
-}
-header button {
-  border: none;
-  cursor: pointer;
-  color: white;
-  background-color: green;
-}
+
+  nav button {
+    border: none;
+    cursor: pointer;
+    color: white;
+    background-color: green;
+  }
 </style>

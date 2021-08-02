@@ -24,7 +24,7 @@ export default {
 <style lang='scss' scoped>
     
     .btn_jb{
-        background-color: #e56c09;
+      background-color: #e56c09;
       line-height: normal;
       padding: 10px 20px;
       font-weight: 400;

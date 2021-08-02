@@ -1,7 +1,13 @@
 <template>
     <header>
       <div class="nav_hd d-flex justify-content-between align-items-center">
+        <router-link :to="{name:'home'}">
           <img  class="rabbit" src="../../../assets/img/logo.svg" alt="">
+        </router-link>
+        <!-- <a href="http://127.0.0.1:8000">
+          <img  class="rabbit" src="../../../assets/img/logo.svg" alt="">
+
+        </a> -->
           <!-- <img  class="title_text" src="../../../assets/img/logotipo-01.svg" alt=""> -->
           <h1>Deliveboo</h1>
          
@@ -12,7 +18,7 @@
               </label>
 
               <ul class="menu__box">
-                  <li>
+                  <li class="mb-4">
                       <a href="http://127.0.0.1:8000/login">Crea il tuo account aziendale</a>
                   </li>
                   <li>
@@ -47,7 +53,7 @@ export default {
         
 
         .rabbit{
-            width: 5%;
+            width: 70px;
         }
 
         h1{
@@ -76,6 +82,7 @@ export default {
         #menu__toggle:checked ~ .menu__box {
           visibility: visible;
           right: 0;
+          z-index: 999;
         }
 
         .menu__btn {

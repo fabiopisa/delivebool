@@ -1,18 +1,23 @@
 <template>
-  <div class="card mb-3 flex-row">
-    <h1>{{id}}</h1>
-    <h1>{{name}}</h1>
-    <p>{{description}}</p>
-    <h3>{{price}}€</h3>
-    <h5
-    v-if="available === 0"
-    >piatto non disponibile</h5>
-    <h5
-    v-if="available === 1"
-    >disponibile</h5>
-    <img :src="img" alt="">
-    <button v-if="available === 1" v-on:click="addItemToCart(meal)">Aggiungi al carrello</button>
-  </div>
+    <div class="card flex-row mb-3" >
+      <div class="card-body">
+          <div class="d-flex justify-content-between">
+              <h5 class="card-title">{{ name }}</h5>
+          </div>
+          <p class="card-text">{{ description }}</p>
+          <h5>{{price}}€</h5>
+          <h5
+          v-if="available === 0"
+          >piatto non disponibile</h5>
+          <h5
+          v-if="available === 1"
+          >disponibile</h5>
+          <img :src="img" alt="">
+        <button class="btn btn-primary float-right" v-if="available === 1" v-on:click="addItemToCart(meal)">Aggiungi al carrello</button>
+        <hr>
+      </div>
+    </div>
+  
 </template>
 
 <script>
@@ -50,6 +55,16 @@ export default {
 }
 </script>
 
-<style>
+<style lang='scss' scoped>
+  .card{
+    background-color: transparent;
+    color: white;
+  }
+  .post-cover{
+        width: 300px;
+        img{
+            width: 100%;
+        }
+  }
 
 </style>
