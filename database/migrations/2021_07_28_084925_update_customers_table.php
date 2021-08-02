@@ -30,7 +30,7 @@ class UpdateCustomersTable extends Migration
      */
     public function down()
     {
-        Schema::table('orders', function (Blueprint $table) {
+        Schema::table('customers', function (Blueprint $table) {
             $table->dropForeign(['order_id']);
 
             $table->dropColumn('order_id');

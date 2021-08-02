@@ -15,17 +15,15 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             CategoriesTableSeeder::class,
             RestaurantsTableSeeder::class,
-            UpdateRestaurantsSeeder::class,
             TypesTableSeeder::class,
             MealsTableSeeder::class,
-            UpdateMealsSeeder::class,
             MealTypeSeeder::class,
             CategoryRestaurantSeeder::class,
-            OrdersTableSeeder::class,
-            MealOrderSeeder::class,
             CustomersTableSeeder::class,
-            UpdateOrdersSeeder::class,
-            UpdateCustomersSeeder::class
+            OrdersTableSeeder::class,
+            UpdateCustomersSeeder::class,
+            MealOrderSeeder::class,
+            
         ]);
     }
 }
