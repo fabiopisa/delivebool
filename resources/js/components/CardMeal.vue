@@ -1,23 +1,34 @@
 <template>
     <div class="card flex-row mb-3" >
       <div class="card-body">
-          <div class="d-flex justify-content-between">
-              <h5 class="card-title">{{ name }}</h5>
-          </div>
-          <p class="card-text">{{ description }}</p>
-          <h5>{{price}}€</h5>
-          <h5
+
+        <div class="cont">
+            <div class="cont-nome">
+              <img :src="img" alt="img-piatto">
+            </div>
+
+            <div class="img-des">
+              <h4 class="card-title mb-4"><strong>{{ name }}</strong></h4>
+              <p class="card-text">{{ description }}</p>
+            </div>
+
+            <div class="price-carr">
+                <h5 class="price">{{price}}€</h5>
+                <button class="btn btn-primary float-right" v-if="available === 1" v-on:click="addItemToCart(meal)">Aggiungi al carrello</button>
+            </div>
+
+        </div>
+         <!--  <h5
           v-if="available === 0"
           >piatto non disponibile</h5>
           <h5
           v-if="available === 1"
-          >disponibile</h5>
-          <img :src="img" alt="">
-        <button class="btn btn-primary float-right" v-if="available === 1" v-on:click="addItemToCart(meal)">Aggiungi al carrello</button>
+          >disponibile</h5> -->
+
         <hr>
       </div>
     </div>
-  
+
 </template>
 
 <script>
@@ -34,8 +45,8 @@ export default {
             img: this.img,
             available: this.available
       }
-        
-      
+
+
     }
   },
   methods:{
@@ -56,9 +67,34 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-  .card{
+   .card{
     background-color: transparent;
     color: white;
+    .card-body{
+        .cont{
+            display: flex;
+                .price-carr{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    .price{
+                        border: white solid 1px;
+                        border-radius: 10px;
+                        padding: 10px;
+                    }
+
+                }
+        }
+        .img-des{
+            display: flex;
+            flex-direction: column;
+        }
+        img{
+            border-radius: 20px;
+            width: 350px;
+            margin-right: 20px;
+        }
+    }
   }
   .post-cover{
         width: 300px;

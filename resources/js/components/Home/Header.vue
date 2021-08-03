@@ -10,8 +10,9 @@
         </a> -->
           <!-- <img  class="title_text" src="../../../assets/img/logotipo-01.svg" alt=""> -->
           <h1>Deliveboo</h1>
-         
-          <div class="mt-4 mr-4">
+
+          <div v-if="hMenu" class="mt-4 mr-4">
+
               <input id="menu__toggle" type="checkbox" />
               <label class="menu__btn" for="menu__toggle">
               <span></span>
@@ -26,13 +27,25 @@
                   </li>
               </ul>
           </div>
+
+          <div  v-if="!hMenu">
+              <h1>ciao</h1>
+
+          </div>
+
       </div>
     </header>
 </template>
 
 <script>
 export default {
-    name:'Header'
+    name:'Header',
+    data(){
+        return{
+            hMenu:true
+        }
+    }
+
 
 }
 </script>
@@ -50,7 +63,7 @@ export default {
         background: linear-gradient(90deg, rgba(253,107,29,1) 10%, rgba(252,176,69,1) 100%);
         background-repeat: no-repeat;
         padding: 20px;
-        
+
 
         .rabbit{
             width: 70px;
@@ -62,7 +75,7 @@ export default {
             text-transform: uppercase;
             color: white;
         }
-        
+
         //trasformo da hamburger a X
         #menu__toggle {
           opacity: 0;
@@ -92,8 +105,8 @@ export default {
           height: 26px;
           cursor: pointer;
         }
-        
-        
+
+
         .menu__btn > span,
         .menu__btn > span::before,
         .menu__btn > span::after {
@@ -149,5 +162,5 @@ export default {
           background-color: #CFD8DC;
         }
     }
-    
+
 </style>

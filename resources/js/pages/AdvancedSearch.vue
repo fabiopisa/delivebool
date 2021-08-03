@@ -1,5 +1,6 @@
 <template>
   <section>
+
     <div class="container d-flex justify-content-center align-items-center">
       <!-- fare una card dei ristoranti dove passo array ristoranti.restaurants -->
       <!-- v-if="ristoranti.restaurants !== undefined" -->
@@ -7,9 +8,9 @@
       v-if="nRistoranti === 1"
       >
         <div class="row">
-
           <CardRestaurant1
           class="col-xs-3 mr-4 card"
+          :type="ristoranti.name"
           v-for="ristorante in ristoranti.restaurants"
           :key="'r'+ristorante.id"
           :id="ristorante.id"
@@ -26,7 +27,7 @@
       class="not_found d-flex justify-content-center align-items-center"
       >
       </div>
-      
+
     </div>
   </section>
 </template>
@@ -69,7 +70,7 @@ export default {
 
 <style lang='scss' scoped>
   section{
-    background-image: url('../../assets/img/talgiere-01.jpg'); 
+    background-image: url('../../assets/img/sfondo-nuovo.jpg');
     width: 100%;
     height: calc(100vh - 100px);
     background-size: 100%;
@@ -80,7 +81,7 @@ export default {
    /*  background-image: url('../../assets/img/tagliere.png'); */
    background-color: rgba(0, 0, 0, .3);
     background-size: cover;
-  
+
     color: white;
 
   }
@@ -91,7 +92,7 @@ export default {
     background-repeat: no-repeat;
     background-size: 60%;
     background-position: center;
-    
+
   }
 
 </style>

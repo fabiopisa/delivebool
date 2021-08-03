@@ -11,7 +11,7 @@
         :nome_categoria="category.nome_categoria"
         :category_id="category.category_id"
         />
-        
+
       </div>
     </div>
 
@@ -38,7 +38,8 @@ export default {
 
   data(){
     return{
-      categories:[] //array che contiene il risultato della chiamata axios
+      categories:[], //array che contiene il risultato della chiamata axios
+
     }
   },
   methods:{
@@ -83,12 +84,12 @@ export default {
         text-shadow: 3px 3px 7px rgba(0, 0, 0, 1);
         padding-top: 50px;
       }
-  
+
       .jumbotron{
         width: 70%;
         background-color: transparent;
 
       }
     }
-  
+
 </style>

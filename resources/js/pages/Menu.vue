@@ -1,19 +1,24 @@
 <template>
+
   <div class="sfondo">
+
     <nav class="">
-      <button class="btn" v-on:click="navigateTo('meals')">vedi piatti ordinati</button>
-      {{cart.length}}
+      <!-- <button class="btn" v-on:click="navigateTo('meals')">vedi piatti</button> -->
+
       <button class="btn" v-on:click="navigateTo('cart')">vedi carrello</button>
+         <div class="cart-length">
+             {{cart.length}}
+         </div>
       <button class="btn" v-if="page === 'cart'" v-on:click="removeCart()">cancella carrello</button>
     </nav>
     <main class="container">
         <div v-if="page === 'cart'">
-          <Cart v-on:removeItemFromCart="removeItemFromCart" :cart="cart" /> 
+          <Cart v-on:removeItemFromCart="removeItemFromCart" :cart="cart" />
           <!-- questo è il componente del carrello -->
         </div>
 
         <div v-if="page === 'meals'">
-          
+
           <!-- <CardMeal
             :meals = "meals"
           /> -->
@@ -42,23 +47,27 @@ import axios from 'axios';
 import CardMeal from '../components/CardMeal.vue';
 import Cart from '../components/Cart.vue';
 
+
 export default {
   name: 'Menu',
   components:{
     CardMeal,
-    Cart
+    Cart,
   },
   data(){
     return{
       menu:[],
       cart:[],
-      page : "meals"
+      page : "meals",
+
+
+
     }
   },
   watch:{
     cart:{
       handler(newCart){
-        localStorage.cart = JSON.stringify(newCart); 
+        localStorage.cart = JSON.stringify(newCart);
       },
       deep: true
     }
@@ -115,8 +124,27 @@ export default {
     width: 100%;
     height: 100%;
     background-size: cover;
+    nav{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80px;
+        button{
+            border: solid 1px white;
+            color: white;
+            background: linear-gradient(90deg, rgba(253,107,29,1) 10%, rgba(252,176,69,1) 100%);
+            height: 40px;
+        }
+        .cart-length{
+            color: white;
+            border: solid 1px white;
+            background: linear-gradient(90deg, rgba(253,107,29,1) 10%, rgba(252,176,69,1) 100%);
+        }
+
+    }
+
   }
-  
+
   .products {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -131,10 +159,5 @@ export default {
   }
 
 
-  nav button {
-    border: none;
-    cursor: pointer;
-    color: white;
-    background-color: green;
-  }
+
 </style>
