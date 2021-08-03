@@ -47,7 +47,7 @@
         </div>
     </div>
 
-    
+
     <!-- Modal -->
     <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -60,7 +60,7 @@
         </div>
         <div class="modal-body">
             <table class="show-cart table">
-            
+
             </table>
             <div>Total price: $<span class="total-cart"></span></div>
         </div>
@@ -70,7 +70,7 @@
         </div>
         </div>
     </div>
-    </div> 
+    </div>
 
             <router-link class="btn btn-primary" :to="{name:'home'}" >
 
@@ -85,7 +85,7 @@
 
 <script>
 export default {
-    name:'Cart'
+    name:'Cart',
 }
 </script>
 

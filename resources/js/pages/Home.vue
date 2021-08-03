@@ -1,19 +1,19 @@
 <template>
   <div class=" bk-home">
-    <div class="categories">
-      <h1 class=" text-center text-white">Il cibo che ami, <br> comodamente a casa tua</h1>
 
-      <div class="d-flex justify-content-center">
+    <h1 class=" text-center text-white">Il cibo che ami, <br> comodamente a casa tua</h1>
 
-        <div class="jumbotron d-flex flex-wrap justify-content-center">
-          <CardCategory
-          v-for="category in categories"
-          :key="'c' + category.category_id"
-          :nome_categoria="category.nome_categoria"
-          :category_id="category.category_id"
-          />
-          
-        </div>
+    <div class="d-flex justify-content-center">
+
+      <div class="jumbotron d-flex flex-wrap justify-content-center">
+        <CardCategory
+        v-for="category in categories"
+        :key="'c' + category.category_id"
+        :nome_categoria="category.nome_categoria"
+        :category_id="category.category_id"
+        />
+
+
       </div>
 
     </div>
@@ -70,7 +70,8 @@ export default {
 
   data(){
     return{
-      categories:[] //array che contiene il risultato della chiamata axios
+      categories:[], //array che contiene il risultato della chiamata axios
+
     }
   },
   methods:{
@@ -106,21 +107,20 @@ export default {
 
   .bk-home{
     width: 100%;
-    height: 100%;
-    .categories{
-      background-image: url('../../assets/img/bg_home-01.jpg');
-      background-size: cover;
-      
-    }
-    h1{
-      font-size: 40px;
-      text-shadow: 3px 3px 7px rgba(0, 0, 0, 1);
-      padding-top: 50px;
-    }
-  
-    .jumbotron{
-      width: 75%;
-      background-color: transparent;
+
+    height: calc(100vh - 100px);
+    background-size: cover;
+    padding: 0 20px;
+      h1{
+        font-size: 40px;
+        text-shadow: 3px 3px 7px rgba(0, 0, 0, 1);
+        padding-top: 50px;
+      }
+
+      .jumbotron{
+        width: 70%;
+        background-color: transparent;
+
 
     }
     .box-home{
@@ -181,6 +181,6 @@ export default {
       }
     }
 
-  }
-  
+
 </style>
+

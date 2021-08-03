@@ -31,7 +31,8 @@ export default {
   },
   data(){
     return{
-      restaurants:[] //array che contiene il risultato della chiamata axios
+      restaurants:[], //array che contiene il risultato della chiamata axios
+
     }
   },
   methods:{
