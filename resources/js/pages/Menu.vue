@@ -1,9 +1,11 @@
 <template>
   <div class="sfondo">
     <nav class="">
-      <button class="btn" v-on:click="navigateTo('meals')">vedi piatti ordinati</button>
+      <button v-if="page === 'cart'" 
+      class="btn" v-on:click="navigateTo('meals')">vedi piatti ordinati</button>
       {{cart.length}}
-      <button class="btn" v-on:click="navigateTo('cart')">vedi carrello</button>
+      <button v-if="page === 'meals'" 
+      class="btn" v-on:click="navigateTo('cart')">vedi carrello</button>
       <button class="btn" v-if="page === 'cart'" v-on:click="removeCart()">cancella carrello</button>
     </nav>
     <main class="container">
@@ -19,7 +21,7 @@
           /> -->
           <div class="row d-flex ">
             <CardMeal
-            class=""
+            :restaurant_id ="restaurant_id"
             v-for="(meal, index) in menu.meals"
             :key = "index"
             :id ="meal.id"
@@ -52,7 +54,8 @@ export default {
     return{
       menu:[],
       cart:[],
-      page : "meals"
+      page : "meals",
+      restaurant_id : this.$route.params.id
     }
   },
   watch:{
@@ -80,8 +83,32 @@ export default {
     },
     /* metodi relativi al cart */
     addItemToCart(product){
-      this.cart.push(product);
-      console.log(this.cart);
+     console.log('visualizzo il prodotto');
+      console.log(product);
+      console.log('//visualizzo il prodotto');
+      /* if(this.cart.includes(product)){
+
+      } */
+      if(!this.cart.includes(product)){
+        product['quantity'] = 1;
+        console.log('setto la quantità del piatto a 1');
+        this.cart.push(product);
+        console.log(this.cart);
+      }else{
+        /* product['quantity'] = this.cart.product.quantity; */
+        product['quantity'] += 1;
+        console.log('quantità salvata e incrementata');
+        console.log(product['quantity']); 
+        console.log('//quantità salvata e incrementata');
+      }
+      /*  if(this.cart.includes(product)){
+        console.log("è contenuto");
+        product['quantity'] = 'ciao';
+        console.log(product['quantity']);
+      }else{
+        this.cart.push(product);
+        console.log(this.cart);
+      } */
     },
     removeItemFromCart(product){
       this.cart.splice(this.cart.indexOf(product),1);//splice per sostituire cosa? prende la posizione del prodotto con indexof e lo sostituisce
@@ -91,12 +118,23 @@ export default {
     },
     removeCart(){
       this.cart = [];
-
+    },
+    quantityDecrement(product){
+      if(product['quantity'] === 0){
+        this.removeItemFromCart(product)
+      }else{
+        product['quantity'] -= 1;
+      }
     }
   },
   created(){
     console.log('qui cerco di far vedere id che ho passato nei params e di salvare la mia salute mentale ')
+    console.log("id del ristorante non ancora salvato");
     console.log(this.$route.params.id);
+    console.log("//id del ristorante non ancora salvato");
+    console.log("id del ristorante salvato");
+    console.log(this.restaurant_id);
+    console.log("//id del ristorante salvato");
     this.getMenu();
     console.log('sarà partita la chiamata axios? bho dio cane');
     console.log(this.cart);

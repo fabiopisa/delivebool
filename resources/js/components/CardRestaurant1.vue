@@ -2,6 +2,7 @@
   <div class="card d-flex mb-5">
     <h4 class="mb-4"> <span style="font-weight:bold;">Nome:</span>  {{nome_ristorante}}</h4>
     <h5><span style="font-weight:bold;">Indirizzo:</span> {{indirizzo_ristorante}}</h5>
+    <h5>tipo {{type}}</h5>
     <router-link class="btn  btn-deli mt-5" :to="{name: 'menuRestaurant', params:{id}}" >Menù</router-link>
   </div>
   
@@ -11,7 +12,7 @@
 <script>
 export default {
   name: 'CardRestaurant',
-  props:['nome_ristorante','indirizzo_ristorante','id'],
+  props:['nome_ristorante','indirizzo_ristorante','id','type'],
   methods:{
     showId(){
       console.log(this.id);

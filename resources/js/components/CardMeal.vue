@@ -32,7 +32,8 @@ export default {
             description: this.description,
             price: this.price,
             img: this.img,
-            available: this.available
+            available: this.available,
+            restaurant_id : this.restaurant_id
       }
         
       
@@ -48,6 +49,9 @@ export default {
     }
   },
   created(){
+    console.log('id del ristorante salvato in ogni piatto');
+    console.log(this.$route.params.restaurant_id);
+    console.log('//id del ristorante salvato in ogni piatto');
     console.log('qui faccio vedere meal salvato nel cardmeal');
     console.log(this.meal);
     console.log('//qui faccio vedere meal salvato nel cardmeal');

@@ -9,6 +9,7 @@
         <div class="row">
 
           <CardRestaurant1
+          :type ="ristoranti.name"
           class="col-xs-3 mr-4 card"
           v-for="ristorante in ristoranti.restaurants"
           :key="'r'+ristorante.id"
