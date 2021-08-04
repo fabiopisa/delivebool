@@ -1,11 +1,19 @@
 <template>
   <section>
-
+    <div v-if="!loaded" class="text-center pt-5 mt-5">
+      <Loading/>
+    </div>
     <div class="container d-flex justify-content-center align-items-center">
       <!-- fare una card dei ristoranti dove passo array ristoranti.restaurants -->
       <!-- v-if="ristoranti.restaurants !== undefined" -->
       <div
-      v-if="nRistoranti === 1"
+      v-if="nRistoranti === 0 && loaded"
+      class="not_found d-flex justify-content-center align-items-center"
+      >
+      </div>
+
+      <div
+      v-if="nRistoranti === 1 && loaded "
       >
         <div class="row">
           <CardRestaurant1
@@ -22,11 +30,7 @@
       </div>
 
       <!-- v-if="ristoranti.restaurants.length === 0" -->
-      <div
-      v-else
-      class="not_found d-flex justify-content-center align-items-center"
-      >
-      </div>
+      
 
     </div>
   </section>
@@ -35,29 +39,36 @@
 <script>
 import axios from 'axios';
 import CardRestaurant1 from '../components/CardRestaurant1.vue';
+import Loading from '../components/Home/Loading.vue'
+
 export default {
   name:'AdvancedSearch',
   components:{
-    CardRestaurant1
+    CardRestaurant1,
+    Loading
   },
   data(){
     return{
       ristoranti:[],
-      nRistoranti : 0
+      nRistoranti : 0,
+      loaded:false,
     }
   },
   methods:{
     getRistoranti(){
+
+      this.loaded = false;
       axios.get('http://127.0.0.1:8000/api/categories/'+this.$route.params.name)
       .then(res =>{
-        console.log('cerco di associare il ristorante in base alla categoria ');
+        //console.log('cerco di associare il ristorante in base alla categoria ');
           this.ristoranti = res.data;
-
-          console.log(this.ristoranti.restaurants.length);
+  
+          //console.log(this.ristoranti.restaurants.length);
           if(this.ristoranti.restaurants.length > 0) this.nRistoranti = 1;
-          console.log("--------------");
-          console.log(res.data);
-        console.log('//cerco di associare il ristorante in base alla categoria ');
+          //console.log("--------------");
+          //console.log(res.data);
+          //console.log('//cerco di associare il ristorante in base alla categoria ');
+          this.loaded = true;
         })
     }
   },

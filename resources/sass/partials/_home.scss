@@ -1,0 +1,17 @@
+.card-hm{
+    background: linear-gradient(90deg, rgba(252,176,69,1), rgba(253,107,29,1));
+    color: white;
+    -webkit-box-shadow: 7px 6px 9px 0px rgba(0,0,0,0.67);  box-shadow: 7px 6px 9px 0px rgba(0,0,0,0.67);
+    border-radius: 15px;
+    h6{
+        color: rgba(0, 0, 0, 0.5);
+    }
+ 
+}
+.btn-fp{
+    background-color: rgba(253,107,29,1);
+    color: white;
+    &:hover{
+        background-image: linear-gradient(to right,rgba(253,107,29,1),  rgba(252,176,69,1));
+    }
+}

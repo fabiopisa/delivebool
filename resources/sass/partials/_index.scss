@@ -1,0 +1,22 @@
+.card-hm{
+    color: white;
+    -webkit-box-shadow: 7px 6px 9px 0px rgba(0,0,0,0.67);  box-shadow: 7px 6px 9px 0px rgba(0,0,0,0.67);
+    border-radius: 15px;
+    li{
+        font-size: 20px;
+        color: #002732;
+        strong{
+            font-size: 22px;
+        }
+    }
+ 
+}
+.btn-leo{
+    border: 1px solid #002732;
+    color: #002732;
+    margin: 15px 40px;
+    &:hover{
+        background-color: #002732;
+        color: white;
+    }
+}

@@ -10942,3 +10942,57 @@ a.text-dark:focus {
   }
 }
 
+.card-hm {
+  background: linear-gradient(90deg, #fcb045, #fd6b1d);
+  color: white;
+  box-shadow: 7px 6px 9px 0px rgba(0, 0, 0, 0.67);
+  border-radius: 15px;
+}
+
+.card-hm h6 {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.btn-fp {
+  background-color: #fd6b1d;
+  color: white;
+}
+
+.btn-fp:hover {
+  background-image: linear-gradient(to right, #fd6b1d, #fcb045);
+}
+
+.card-hm {
+  color: white;
+  box-shadow: 7px 6px 9px 0px rgba(0, 0, 0, 0.67);
+  border-radius: 15px;
+}
+
+.card-hm li {
+  font-size: 20px;
+  color: #002732;
+}
+
+.card-hm li strong {
+  font-size: 22px;
+}
+
+.btn-leo {
+  border: 1px solid #002732;
+  color: #002732;
+  margin: 15px 40px;
+}
+
+.btn-leo:hover {
+  background-color: #002732;
+  color: white;
+}
+
+.header-back {
+  background: linear-gradient(90deg, #fd6b1d 10%, #fcb045 100%);
+}
+
+.header-back .title-hd {
+  color: white;
+}
+

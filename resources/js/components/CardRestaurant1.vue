@@ -1,16 +1,19 @@
 <template>
 
+
  <div class="card d-flex mb-5">
     <h3 class="mb-4"> <span style="font-weight:bold;"></span>  {{nome_ristorante}}</h3>
     <h5><span style="font-weight:bold;"></span>{{indirizzo_ristorante}}</h5>
     <h5><span>{{type}}</span></h5>
     <router-link class="btn  btn-deli mt-5" :to="{name: 'menuRestaurant', params:{id}}" >Menù</router-link>
  </div>
+
 </template>
 
 <script>
 export default {
   name: 'CardRestaurant',
+  
   props:['nome_ristorante','indirizzo_ristorante','id','type'],
   methods:{
     showId(){
