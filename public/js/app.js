@@ -2021,7 +2021,8 @@ __webpack_require__.r(__webpack_exports__);
         description: this.description,
         price: this.price,
         img: this.img,
-        available: this.available
+        available: this.available,
+        restaurant_id: this.restaurant_id
       }
     };
   },
@@ -2035,6 +2036,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
+    console.log('id del ristorante salvato in ogni piatto');
+    console.log(this.$route.params.restaurant_id);
+    console.log('//id del ristorante salvato in ogni piatto');
     console.log('qui faccio vedere meal salvato nel cardmeal');
     console.log(this.meal);
     console.log('//qui faccio vedere meal salvato nel cardmeal');
@@ -2096,13 +2100,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CardRestaurant',
   props: ['nome_ristorante', 'indirizzo_ristorante', 'id', 'type'],
@@ -2143,16 +2140,75 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Cart',
   props: ["cart"],
+  data: function data() {
+    return {
+      totPriceMeal: 0,
+      totPriceCart: 0,
+      Order: this.cart
+    };
+  },
   methods: {
     removeItemFromCart: function removeItemFromCart(product) {
+      this.totPriceMeal = 0; //variabile di lavoro  = 0
+
+      this.totPriceMeal = product.price * product.quantity;
+      this.totPriceCart = this.totPriceCart - this.totPriceMeal;
       this.$emit("removeItemFromCart", product);
+    },
+    quantityDecrement: function quantityDecrement(product) {
+      if (product.quantity === 1) {
+        product.quantity = 1;
+      } else {
+        product.quantity--;
+        this.totPriceCart = this.totPriceCart - product.price;
+      }
+    },
+    quantityIncrement: function quantityIncrement(product) {
+      product.quantity++;
+      this.totPriceCart = this.totPriceCart + product.price;
     }
   },
   created: function created() {
+    var _this = this;
+
+    console.log('vediamo il cart nel created');
+    this.cart.forEach(function (element) {
+      console.log('visualizzo il prezzo prima di moltiplicarlo');
+      console.log(element.price);
+      console.log('//visualizzo il prezzo prima di moltiplicarlo');
+      console.log('visualizzo la quantità prima di moltiplicarla');
+      console.log(element.quantity);
+      console.log('//visualizzo la quantità prima di moltiplicarla');
+      console.log('visualizzo la variabile che conterrà il tot');
+      console.log(_this.totPriceMeal);
+      console.log('//visualizzo la variabile che conterrà il tot');
+      _this.totPriceMeal = element.price * element.quantity;
+      console.log('mi salvo in una variabile il totale per ogni piatto');
+      _this.totPriceCart = _this.totPriceCart + _this.totPriceMeal;
+      console.log('//mi salvo in una variabile il totale per ogni piatto');
+      console.log('visualizzo il totale una volta calcolata');
+      console.log(_this.totPriceMeal);
+      console.log('//visualizzo il totale una volta calcolata');
+      console.log('visualizzo il totale del carrello');
+      console.log(_this.totPriceCart);
+      console.log('//visualizzo il totale del carrello');
+      console.log('visualizzo gli elementi presenti dentro element');
+      console.log(element);
+      console.log('//visualizzo gli elementi presenti dentro element');
+    });
+    console.log('vediamo il cart nel created');
     console.log(this.cart);
+    console.log("order");
+    console.log(this.Order);
+    console.log("//order");
   }
 });
 
@@ -2391,8 +2447,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Dashboard'
+  name: 'Dashboard',
+  data: function data() {
+    return {
+      ordine: this.$route.params.Order,
+      totPrice: this.$route.params.totPriceCart
+    };
+  },
+  created: function created() {
+    console.log("ordine");
+    console.log(this.ordine);
+    console.log("//ordine");
+    console.log("Order");
+    console.log(this.$route.params.Order);
+    console.log("//Order");
+    console.log("prezzo totale salvato");
+    console.log(this.totPrice);
+    console.log("//prezzo totale salvato");
+    console.log("prezzo totale");
+    console.log(this.$route.totPriceCart);
+    console.log("//prezzo totale");
+  }
 });
 
 /***/ }),
@@ -2567,6 +2650,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -2580,7 +2665,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       menu: [],
       cart: [],
-      page: "meals"
+      page: "meals",
+      restaurant_id: this.$route.params.id
     };
   },
   watch: {
@@ -2608,8 +2694,33 @@ __webpack_require__.r(__webpack_exports__);
 
     /* metodi relativi al cart */
     addItemToCart: function addItemToCart(product) {
-      this.cart.push(product);
-      console.log(this.cart);
+      console.log('visualizzo il prodotto');
+      console.log(product);
+      console.log('//visualizzo il prodotto');
+      /* if(this.cart.includes(product)){
+        } */
+
+      if (!this.cart.includes(product)) {
+        product['quantity'] = 1;
+        console.log('setto la quantità del piatto a 1');
+        this.cart.push(product);
+        console.log(this.cart);
+      } else {
+        /* product['quantity'] = this.cart.product.quantity; */
+        product['quantity'] += 1;
+        console.log('quantità salvata e incrementata');
+        console.log(product['quantity']);
+        console.log('//quantità salvata e incrementata');
+      }
+      /*  if(this.cart.includes(product)){
+        console.log("è contenuto");
+        product['quantity'] = 'ciao';
+        console.log(product['quantity']);
+      }else{
+        this.cart.push(product);
+        console.log(this.cart);
+      } */
+
     },
     removeItemFromCart: function removeItemFromCart(product) {
       this.cart.splice(this.cart.indexOf(product), 1); //splice per sostituire cosa? prende la posizione del prodotto con indexof e lo sostituisce
@@ -2619,11 +2730,23 @@ __webpack_require__.r(__webpack_exports__);
     },
     removeCart: function removeCart() {
       this.cart = [];
+    },
+    quantityDecrement: function quantityDecrement(product) {
+      if (product['quantity'] === 0) {
+        this.removeItemFromCart(product);
+      } else {
+        product['quantity'] -= 1;
+      }
     }
   },
   created: function created() {
     console.log('qui cerco di far vedere id che ho passato nei params e di salvare la mia salute mentale ');
+    console.log("id del ristorante non ancora salvato");
     console.log(this.$route.params.id);
+    console.log("//id del ristorante non ancora salvato");
+    console.log("id del ristorante salvato");
+    console.log(this.restaurant_id);
+    console.log("//id del ristorante salvato");
     this.getMenu();
     console.log('sarà partita la chiamata axios? bho dio cane');
     console.log(this.cart);
@@ -4503,32 +4626,78 @@ var render = function() {
       "div",
       { staticClass: "products" },
       _vm._l(_vm.cart, function(product, index) {
-        return _c("div", { key: index }, [
-          _c("h3", [_vm._v("nome piatto" + _vm._s(product.name))]),
-          _vm._v(" "),
-          _c("h3", [_vm._v(_vm._s(product.description))]),
-          _vm._v(" "),
-          _c("h1", [_vm._v("prova")]),
-          _vm._v(" "),
-          _c("img", { attrs: { src: product.img } }),
-          _vm._v(" "),
-          _c("h4", [_vm._v("prezzo " + _vm._s(product.price) + "€")]),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.removeItemFromCart(product)
+        return _c(
+          "div",
+          { key: index },
+          [
+            _c("h3", [_vm._v("nome piatto" + _vm._s(product.name))]),
+            _vm._v(" "),
+            _c("h3", [_vm._v(_vm._s(product.description))]),
+            _vm._v(" "),
+            _c("h1", [_vm._v("prova")]),
+            _vm._v(" "),
+            _c("img", { attrs: { src: product.img } }),
+            _vm._v(" "),
+            _c("h4", [_vm._v("prezzo " + _vm._s(product.price) + "€")]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                on: {
+                  click: function($event) {
+                    return _vm.quantityDecrement(product)
+                  }
                 }
-              }
-            },
-            [_vm._v("Remove from cart")]
-          )
-        ])
+              },
+              [_vm._v("-")]
+            ),
+            _vm._v(" "),
+            _c("span", [_vm._v("quantity " + _vm._s(product["quantity"]))]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                on: {
+                  click: function($event) {
+                    return _vm.quantityIncrement(product)
+                  }
+                }
+              },
+              [_vm._v("+")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                on: {
+                  click: function($event) {
+                    return _vm.removeItemFromCart(product)
+                  }
+                }
+              },
+              [_vm._v("Remove from cart")]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                attrs: {
+                  to: {
+                    name: "dashboard",
+                    params: { Order: _vm.Order, totPriceCart: _vm.totPriceCart }
+                  }
+                }
+              },
+              [_vm._v("procedi all'ordine")]
+            )
+          ],
+          1
+        )
       }),
       0
-    )
+    ),
+    _vm._v(" "),
+    _c("h1", [_vm._v("tot cart " + _vm._s(_vm.totPriceCart.toFixed(2)))])
   ])
 }
 var staticRenderFns = []
@@ -4838,19 +5007,36 @@ var render = function() {
     "section",
     { staticClass: "container" },
     [
-      _c("h1", [_vm._v("Questa è la tua Dashboard")]),
+      _c("h1", [_vm._v("conferma ordine")]),
       _vm._v(" "),
       _c(
-        "router-link",
-        { staticClass: "btn btn-primary", attrs: { to: { name: "orders" } } },
-        [_vm._v("\n    My orders\n  ")]
+        "div",
+        { staticClass: "products" },
+        [
+          _vm._l(_vm.ordine, function(item, index) {
+            return _c("div", { key: index }, [
+              _c("h3", [_vm._v("nome piatto" + _vm._s(item.name))]),
+              _vm._v(" "),
+              _c("h3", [_vm._v(_vm._s(item.description))]),
+              _vm._v(" "),
+              _c("h1", [_vm._v("prova")]),
+              _vm._v(" "),
+              _c("img", { attrs: { src: item.img } }),
+              _vm._v(" "),
+              _c("h4", [_vm._v("prezzo " + _vm._s(item.price) + "€")]),
+              _vm._v(" "),
+              _c("span", [_vm._v("quantity " + _vm._s(item["quantity"]))])
+            ])
+          }),
+          _vm._v(" "),
+          _c("h5", [_vm._v(_vm._s(_vm.totPrice))])
+        ],
+        2
       ),
       _vm._v(" "),
-      _c(
-        "router-link",
-        { staticClass: "btn btn-primary", attrs: { to: { name: "foods" } } },
-        [_vm._v("\n    My foods\n  ")]
-      ),
+      _vm.totPrice !== 0
+        ? _c("button", [_vm._v("procedi all'ordine")])
+        : _vm._e(),
       _vm._v(" "),
       _c(
         "router-link",
@@ -5004,18 +5190,35 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "sfondo" }, [
     _c("nav", {}, [
-      _c(
-        "button",
-        {
-          staticClass: "btn",
-          on: {
-            click: function($event) {
-              return _vm.navigateTo("cart")
-            }
-          }
-        },
-        [_vm._v("vedi carrello")]
-      ),
+      _vm.page === "cart"
+        ? _c(
+            "button",
+            {
+              staticClass: "btn",
+              on: {
+                click: function($event) {
+                  return _vm.navigateTo("meals")
+                }
+              }
+            },
+            [_vm._v("vedi piatti")]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.page === "meals"
+        ? _c(
+            "button",
+            {
+              staticClass: "btn",
+              on: {
+                click: function($event) {
+                  return _vm.navigateTo("cart")
+                }
+              }
+            },
+            [_vm._v("vedi carrello")]
+          )
+        : _vm._e(),
       _vm._v(" "),
       _c("div", { staticClass: "cart-length" }, [
         _vm._v("\n           " + _vm._s(_vm.cart.length) + "\n       ")
@@ -5060,6 +5263,7 @@ var render = function() {
                 return _c("CardMeal", {
                   key: index,
                   attrs: {
+                    restaurant_id: _vm.restaurant_id,
                     id: meal.id,
                     name: meal.name,
                     description: meal.description,
@@ -21728,8 +21932,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\boolean\delivebool\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\boolean\delivebool\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\boolean\progetto finale\delivebool-11\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\boolean\progetto finale\delivebool-11\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
