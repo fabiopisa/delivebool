@@ -8,7 +8,7 @@ Vue.use(VueRouter);
 import Home from './pages/Home.vue';
 import AdvancedSearch from './pages/AdvancedSearch.vue';
 import Restaurant from './pages/Restaurant.vue';
-import Dashboard from './pages/Dashboard.vue';
+import Pay from './pages/Pay.vue';
 //componente per far vedere il menu
 import Menu from './pages/Menu';
 
@@ -43,9 +43,9 @@ const router = new VueRouter({
     },
     /* possibile componente da usare dopo il carrello */
     {
-      path:'/dashboard',
-      name: 'dashboard',
-      component: Dashboard
+      path:'/pay',
+      name: 'pay',
+      component: Pay
     }
     
   ]

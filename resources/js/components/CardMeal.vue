@@ -14,10 +14,10 @@
 
             <div class="price-carr">
                 <h5 class="price">{{price}}€</h5>
-                <button class="btn btn-primary float-right" v-if="available === 1" v-on:click="addItemToCart(meal)">Aggiungi al carrello</button>
             </div>
 
         </div>
+            <button class="btn btn-cart float-right" v-if="available === 1" v-on:click="addItemToCart(meal)">Aggiungi al carrello</button>
          <!--  <h5
           v-if="available === 0"
           >piatto non disponibile</h5>
@@ -77,34 +77,36 @@ export default {
     .card-body{
         .cont{
             display: flex;
-                .price-carr{
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                    .price{
-                        border: white solid 1px;
-                        border-radius: 10px;
-                        padding: 10px;
-                    }
-
-                }
+            .price-carr{
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              .price{
+                border: white solid 1px;
+                border-radius: 10px;
+                padding: 10px;
+              }
+            }
         }
         .img-des{
             display: flex;
             flex-direction: column;
         }
         img{
-            border-radius: 20px;
+          border-radius: 20px;
             width: 350px;
             margin-right: 20px;
         }
-    }
+      }
   }
   .post-cover{
-        width: 300px;
+    width: 300px;
         img{
-            width: 100%;
+          width: 100%;
         }
   }
-
+  .btn-cart{
+    width: 250px;
+    background-color: lightskyblue;
+  }
 </style>
