@@ -2,16 +2,17 @@
 
   <div class="sfondo">
 
-    <nav class="">
+    <nav class="d-flex justify-content-end mr-5">
       <button  v-if="page === 'cart'"  class="btn" v-on:click="navigateTo('meals')">vedi piatti</button>
 
       <button
       v-if="page === 'meals'" 
-      class="btn" v-on:click="navigateTo('cart')">vedi carrello</button>
-         <div class="cart-length">
+      class="btn" v-on:click="navigateTo('cart')">vedi <i class="fas fa-shopping-cart"></i></button>
+         <div class="cart-length d-flex justify-content-center">
              {{cart.length}}
          </div>
       <button class="btn" v-if="page === 'cart'" v-on:click="removeCart()">cancella carrello</button>
+      
     </nav>
     <main class="container">
         <div v-if="!loaded" class="text-center mt-5">
@@ -21,6 +22,7 @@
           <Cart v-on:removeItemFromCart="removeItemFromCart" :cart="cart" />
           <!-- questo è il componente del carrello -->
         </div>
+        
 
         <div v-if="page === 'meals'">
 
@@ -60,7 +62,7 @@ export default {
   components:{
     CardMeal,
     Cart,
-    Loading
+    Loading,
   },
   data(){
     return{
@@ -166,7 +168,7 @@ export default {
 }
 </script>
 
-<style lang='scss' scope>
+<style lang='scss' scoped>
   .sfondo{
     background-image: url('../../assets/img/bg-res-01.jpg');
     width: 100%;
@@ -180,14 +182,19 @@ export default {
         button{
             border: solid 1px white;
             color: white;
-            background: linear-gradient(90deg, rgba(253,107,29,1) 10%, rgba(252,176,69,1) 100%);
+            background-color: rgba(252,176,69,1);
             height: 40px;
         }
         .cart-length{
+            padding:5px;
+            border-radius: 0px 5px 5px 0px;
             color: white;
-            border: solid 1px white;
-            background: linear-gradient(90deg, rgba(253,107,29,1) 10%, rgba(252,176,69,1) 100%);
-        }
+            border-top: solid 1px white;
+            border-right: solid 1px white;
+            border-bottom: solid 1px white;
+            border-left: solid 0px white;
+            background-color: rgba(252,176,69,1);       
+          }
 
     }
 

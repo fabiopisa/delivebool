@@ -1,21 +1,32 @@
 <template>
   <div>
-     <h1>Your Cart</h1>
-      <div class="products">
-      <div v-for="(product, index) in cart" :key="index">
-        <h3>nome piatto{{product.name}}</h3>
-        <h3>{{product.description}}</h3>
-        <h1>prova</h1>
-        <img :src="product.img" />
-        <h4>prezzo {{product.price}}€</h4>
-        <button v-on:click="quantityDecrement(product)">-</button>
-        <span>quantity {{product['quantity']}}</span>
-        <button v-on:click="quantityIncrement(product)">+</button>
-        <button v-on:click="removeItemFromCart(product)">Remove from cart</button>
-        <router-link :to="{name: 'dashboard', params:{ Order,totPriceCart}}">procedi all'ordine</router-link>
-      </div>
+     <h2 class="mb-5 mt-3 text-white">Il tuo carrello</h2>
+      <div class="mb-4 products" v-for="(product, index) in cart" :key="index">
+        <div class=" mt-5">
+          <div class="float-left">
+            <img class="img-fluid mb-3" :src="product.img" />
+            <h4 class="mb-3">{{product.name}}</h4>
+          </div>
+
+          <div class="price-card float-right text-center">
+            <h5 class="price">prezzo {{product.price}}€</h5>
+            <div class="d-block text-center">
+              <button class="btn btn-quantita mr-3" v-on:click="quantityDecrement(product)">-</button>
+              <span class="mr-3">X {{product['quantity']}}</span>
+              <button class="btn btn-quantita mr-3 " v-on:click="quantityIncrement(product)">+</button>
+            </div>
+            <button class="btn btn-quantita" v-on:click="removeItemFromCart(product)">Rimuovi Prodotto</button>
+          </div>
+        </div>
     </div>
-    <h1>tot cart {{totPriceCart.toFixed(2)}}</h1>
+    <div class="mt-5 d-flex justify-content-between">
+      
+      <div class="ml-4 btn btn-tuttok mb-4">
+        <router-link :to="{name: 'pay'}">Procedi al pagamento</router-link> 
+      </div>
+      <span class="text-white total"><strong>Totale:</strong> {{totPriceCart.toFixed(2)}}</span>
+
+    </div>
   </div>
 </template>
 
@@ -91,6 +102,52 @@ export default {
 }
 </script>
 
-<style>
+<style lang='scss' scoped>
 
+  .products{
+    color: white;
+    width: 100%;
+    height: 300px;
+    border-bottom: 1px solid white;
+    margin: 30px;
+    img{
+      width: 370px;
+      height: 250px;
+      border-radius: 20px;
+    }
+    .price-card{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      height: 300px;
+      }
+      .price{
+        border: white solid 1px;
+        border-radius: 10px;
+        padding: 10px;
+      }
+        .btn-quantita{
+          background-color: white;
+          color: black;
+          transition: transform .2s;
+          &:hover{
+            transform: scale(1.04);
+          }
+    }
+  }
+  .btn-tuttok{
+    background-color: green;
+    transition: transform .2s;
+    a{
+      text-decoration: none;
+      color: white;
+    }
+    &:hover{
+      transform: scale(1.04);
+
+    }
+  }
+  .total{
+    font-size: 20px;
+  }
 </style>
