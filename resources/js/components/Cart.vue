@@ -104,7 +104,7 @@ export default {
 
 <style lang='scss' scoped>
   .carrello{
-    min-height: 45vh;
+    min-height: 65vh;
   }
   h2{
     margin-bottom: 80px;
