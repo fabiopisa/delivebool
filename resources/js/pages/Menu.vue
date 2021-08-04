@@ -3,7 +3,7 @@
   <div class="sfondo">
 
     <nav class="d-flex justify-content-end mr-5">
-      <button  v-if="page === 'cart'"  class="btn" v-on:click="navigateTo('meals')">vedi piatti</button>
+      <button  v-if="page === 'cart'"  class="btn" v-on:click="navigateTo('meals')">Vedi Piatti</button>
 
       <button
       v-if="page === 'meals'" 
@@ -11,7 +11,7 @@
          <div class="cart-length d-flex justify-content-center">
              {{cart.length}}
          </div>
-      <button class="btn" v-if="page === 'cart'" v-on:click="removeCart()">cancella carrello</button>
+      <button class="btn ml-3" v-if="page === 'cart'" v-on:click="removeCart()">Cancella Carrello</button>
       
     </nav>
     <main class="container">

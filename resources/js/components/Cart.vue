@@ -1,6 +1,6 @@
 <template>
-  <div>
-     <h2 class="mb-5 mt-3 text-white">Il tuo carrello</h2>
+  <div class="carrello">
+     <h2 class="mt-3 text-white text-uppercase">Il tuo carrello</h2>
       <div class="mb-4 products" v-for="(product, index) in cart" :key="index">
         <div class=" mt-5">
           <div class="float-left">
@@ -103,7 +103,12 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-
+  .carrello{
+    min-height: 45vh;
+  }
+  h2{
+    margin-bottom: 80px;
+  }
   .products{
     color: white;
     width: 100%;

@@ -167,8 +167,8 @@
             </div>
           </div>
 
-          <button class="card-form__button">
-            Submit
+          <button class="card-form__button ">
+             <router-link :to="{name: 'success'}">Submit</router-link>
           </button>
         </div>
       </div>
@@ -896,6 +896,12 @@ body {
       transform: scale(1.1);
       box-shadow: 0px 17px 20px -6px rgba(36, 52, 70, 0.36);
     }
+  }
+  
+}
+button{
+  a{
+    color: white;
   }
 }
 </style>

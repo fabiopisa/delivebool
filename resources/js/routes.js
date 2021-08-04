@@ -9,6 +9,7 @@ import Home from './pages/Home.vue';
 import AdvancedSearch from './pages/AdvancedSearch.vue';
 import Restaurant from './pages/Restaurant.vue';
 import Pay from './pages/Pay.vue';
+import Success from './pages/Success.vue';
 //componente per far vedere il menu
 import Menu from './pages/Menu';
 
@@ -46,6 +47,11 @@ const router = new VueRouter({
       path:'/pay',
       name: 'pay',
       component: Pay
+    },
+    {
+      path:'/success',
+      name: 'success',
+      component: Success
     }
     
   ]

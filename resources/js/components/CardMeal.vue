@@ -18,6 +18,7 @@
 
         </div>
             <button class="btn btn-cart float-right" v-if="available === 1" v-on:click="addItemToCart(meal)">Aggiungi al carrello</button>
+            <div class=" btn-disp float-right" v-if="available === 0" v-on:click="addItemToCart(meal)">Non Disponibile</div>
          <!--  <h5
           v-if="available === 0"
           >piatto non disponibile</h5>
@@ -108,5 +109,20 @@ export default {
   .btn-cart{
     width: 250px;
     background-color: lightskyblue;
+  }
+  .btn-disp{
+    width: 250px;
+    background-color: rgba(226, 92, 92);
+    opacity: 0.8;
+    display: inline-block;
+    font-weight: 400;
+    color: #212529;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
   }
 </style>
