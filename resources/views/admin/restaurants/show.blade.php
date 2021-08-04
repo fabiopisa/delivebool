@@ -18,10 +18,10 @@
       
       <div class="col-12 row mt-5 d-flex align-items-center">
         <div class="col-4">
-          <h2>{{$meal->name}}</h2>
-          <img src="{{$meal->img}}" alt="">
+          <img class="img-fluid" src="{{$meal->img}}" alt="">
         </div>
         <div class="col-8 text-left" >
+          <h2 class="text-left">{{$meal->name}}</h2>
           <p>{{$meal->description}}</p>
           <h4>
             <span class="badge badge-warning">

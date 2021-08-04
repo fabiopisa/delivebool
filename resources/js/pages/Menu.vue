@@ -12,6 +12,9 @@
       <button class="btn" v-if="page === 'cart'" v-on:click="removeCart()">cancella carrello</button>
     </nav>
     <main class="container">
+        <div v-if="!loaded" class="text-center mt-5">
+          <Loading/>
+        </div>
         <div v-if="page === 'cart'">
           <Cart v-on:removeItemFromCart="removeItemFromCart" :cart="cart" />
           <!-- questo è il componente del carrello -->
@@ -46,6 +49,8 @@
 import axios from 'axios';
 import CardMeal from '../components/CardMeal.vue';
 import Cart from '../components/Cart.vue';
+import Loading from '../components/Home/Loading.vue';
+
 
 
 export default {
@@ -53,15 +58,14 @@ export default {
   components:{
     CardMeal,
     Cart,
+    Loading
   },
   data(){
     return{
       menu:[],
       cart:[],
       page : "meals",
-
-
-
+      loaded:false,
     }
   },
   watch:{
@@ -74,6 +78,7 @@ export default {
   },
   methods:{
     getMenu(){
+      this.loaded = false;
       axios.get('http://127.0.0.1:8000/api/restaurants/'+this.$route.params.id)
         .then(res =>{
           this.menu = res.data;
@@ -81,6 +86,9 @@ export default {
           console.log(this.menu);
           console.log('//questo è il menu completo');
           console.log(res.data);
+
+          this.loaded = true;
+
         })
 
         .catch(err => err);

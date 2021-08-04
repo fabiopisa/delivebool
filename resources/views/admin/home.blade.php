@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="text-center d-flex flex-column align-items-center">
                 <div class="col-12 text-center">
-                    <div class="card col-6 m-auto">
+                    <div class="card card-hm col-6 m-auto">
                             <div class="card-body">
                             <h6 class="card-title">Nome</h6>
                             <h5 class="card-title">{{ Auth::user()->name}}</h5>
@@ -21,11 +21,11 @@
                 </div>
 
                 <div class="d-flex flex-column col-4">
-                    <a class="btn btn-primary mt-5" href="{{route('admin.restaurants.index')}}">
+                    <a class="btn btn-fp mt-5" href="{{route('admin.restaurants.index')}}">
                         I miei ristoranti
                     </a>   
     
-                    <a class="btn btn-outline-primary mt-3" href="{{route('admin.restaurants.create')}}">
+                    <a class="btn btn-fp mt-3" href="{{route('admin.restaurants.create')}}">
                         Aggiungi ristorante
                     </a>
                 </div>

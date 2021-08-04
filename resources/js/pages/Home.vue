@@ -6,6 +6,9 @@
       <div class="d-flex justify-content-center">
 
         <div class="jumbotron d-flex flex-wrap justify-content-center">
+          <div v-if="!loaded" class="text-center pt-5">
+            <Loading/>
+          </div>
           <CardCategory
           v-for="category in categories"
           :key="'c' + category.category_id"
@@ -61,21 +64,27 @@
 
 <script>
 import axios from 'axios';
-import CardCategory from '../components/CardCategory.vue'
+import CardCategory from '../components/CardCategory.vue';
+import Loading from '../components/Home/Loading.vue';
+
 export default {
   name:'Home',
   components:{
-    CardCategory
+    CardCategory,
+    Loading
   },
 
   data(){
     return{
       categories:[], //array che contiene il risultato della chiamata axios
+      loaded:false,
+
 
     }
   },
   methods:{
     getCategories(){
+      this.loaded = false;
       axios.get('http://127.0.0.1:8000/api/categories')
         .then(res =>{
             this.categories = res.data;
@@ -83,6 +92,7 @@ export default {
             console.log(res.data); //"qui visualizzo il risultato della chiamata axios"
 
             console.log(this.categories[0].category_id);
+            this.loaded = true;
         })
         .catch(err => {
           console.log(err);

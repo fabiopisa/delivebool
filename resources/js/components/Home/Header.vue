@@ -20,10 +20,10 @@
 
               <ul class="menu__box">
                   <li class="mb-4">
-                      <a href="http://127.0.0.1:8000/login">Crea il tuo account aziendale</a>
+                      <a href="http://127.0.0.1:8000/register">Crea il tuo account aziendale</a>
                   </li>
                   <li>
-                      <a href="http://127.0.0.1:8000/register">Accedi al tuo account aziendale</a>
+                      <a href="http://127.0.0.1:8000/login ">Accedi al tuo account aziendale</a>
                   </li>
               </ul>
           </div>

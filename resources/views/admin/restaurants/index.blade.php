@@ -34,7 +34,7 @@
 
   @foreach ($restaurants as $restaurant)
     @if (Auth::user()->id === $restaurant->user_id)
-      <div class="card row mb-5">
+      <div class="card card-hm row mb-5">
         <div class="d-flex justify-content-between align-items-center">
           <ul class=" list-unstyled m-4">
             <li class="m-4"><strong>Nome:</strong> {{$restaurant->name}}</li>
@@ -63,15 +63,15 @@
             </li>
           </ul>
   
-          <div class="m-5 col-2 text-center">
-            <a class="btn btn-outline-success" href="{{route('admin.restaurants.edit',$restaurant)}}">
+          <div class="mr-2 d-flex flex-column">
+            <a class="btn btn-leo " href="{{route('admin.restaurants.edit',$restaurant)}}">
               Modifica
             </a>
 
-            <a class="btn btn-success" href="{{route('admin.restaurants.show',$restaurant->id)}}">
+            <a class="btn btn-leo " href="{{route('admin.restaurants.show',$restaurant->id)}}">
               Menù
             </a>
-            <a class="btn btn-outline-secondary mt-3" href="{{route('admin.orders.show',$restaurant)}}">
+            <a class="btn btn-leo " href="{{route('admin.orders.show',$restaurant)}}">
               Ordini
             </a>
           </div>

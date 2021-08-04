@@ -6,3 +6,19 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+//import scss
+
+@import './partials/home';
+@import './partials/index';
+
+
+//style
+.header-back{
+
+    background: linear-gradient(90deg, rgba(253,107,29,1) 10%, rgba(252,176,69,1) 100%);
+    .title-hd{
+        color: white;
+    }
+ 
+}
