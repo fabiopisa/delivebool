@@ -12,6 +12,7 @@
         <span>quantity {{product['quantity']}}</span>
         <button v-on:click="quantityIncrement(product)">+</button>
         <button v-on:click="removeItemFromCart(product)">Remove from cart</button>
+        <router-link :to="{name: 'dashboard', params:{ Order,totPriceCart}}">procedi all'ordine</router-link>
       </div>
     </div>
     <h1>tot cart {{totPriceCart.toFixed(2)}}</h1>
@@ -25,7 +26,8 @@ export default {
   data(){
     return{
       totPriceMeal : 0,
-      totPriceCart: 0
+      totPriceCart: 0,
+      Order: this.cart
     }
   },
   methods: {
@@ -82,6 +84,9 @@ export default {
     );
     console.log('vediamo il cart nel created')
     console.log(this.cart)
+    console.log("order");
+    console.log(this.Order)
+    console.log("//order");
   }
 }
 </script>

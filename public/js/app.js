@@ -2144,13 +2144,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Cart',
   props: ["cart"],
   data: function data() {
     return {
       totPriceMeal: 0,
-      totPriceCart: 0
+      totPriceCart: 0,
+      Order: this.cart
     };
   },
   methods: {
@@ -2204,6 +2206,9 @@ __webpack_require__.r(__webpack_exports__);
     });
     console.log('vediamo il cart nel created');
     console.log(this.cart);
+    console.log("order");
+    console.log(this.Order);
+    console.log("//order");
   }
 });
 
@@ -2442,8 +2447,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Dashboard'
+  name: 'Dashboard',
+  data: function data() {
+    return {
+      ordine: this.$route.params.Order,
+      totPrice: this.$route.params.totPriceCart
+    };
+  },
+  created: function created() {
+    console.log("ordine");
+    console.log(this.ordine);
+    console.log("//ordine");
+    console.log("Order");
+    console.log(this.$route.params.Order);
+    console.log("//Order");
+    console.log("prezzo totale salvato");
+    console.log(this.totPrice);
+    console.log("//prezzo totale salvato");
+    console.log("prezzo totale");
+    console.log(this.$route.totPriceCart);
+    console.log("//prezzo totale");
+  }
 });
 
 /***/ }),
@@ -4594,55 +4626,73 @@ var render = function() {
       "div",
       { staticClass: "products" },
       _vm._l(_vm.cart, function(product, index) {
-        return _c("div", { key: index }, [
-          _c("h3", [_vm._v("nome piatto" + _vm._s(product.name))]),
-          _vm._v(" "),
-          _c("h3", [_vm._v(_vm._s(product.description))]),
-          _vm._v(" "),
-          _c("h1", [_vm._v("prova")]),
-          _vm._v(" "),
-          _c("img", { attrs: { src: product.img } }),
-          _vm._v(" "),
-          _c("h4", [_vm._v("prezzo " + _vm._s(product.price) + "€")]),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.quantityDecrement(product)
+        return _c(
+          "div",
+          { key: index },
+          [
+            _c("h3", [_vm._v("nome piatto" + _vm._s(product.name))]),
+            _vm._v(" "),
+            _c("h3", [_vm._v(_vm._s(product.description))]),
+            _vm._v(" "),
+            _c("h1", [_vm._v("prova")]),
+            _vm._v(" "),
+            _c("img", { attrs: { src: product.img } }),
+            _vm._v(" "),
+            _c("h4", [_vm._v("prezzo " + _vm._s(product.price) + "€")]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                on: {
+                  click: function($event) {
+                    return _vm.quantityDecrement(product)
+                  }
                 }
-              }
-            },
-            [_vm._v("-")]
-          ),
-          _vm._v(" "),
-          _c("span", [_vm._v("quantity " + _vm._s(product["quantity"]))]),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.quantityIncrement(product)
+              },
+              [_vm._v("-")]
+            ),
+            _vm._v(" "),
+            _c("span", [_vm._v("quantity " + _vm._s(product["quantity"]))]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                on: {
+                  click: function($event) {
+                    return _vm.quantityIncrement(product)
+                  }
                 }
-              }
-            },
-            [_vm._v("+")]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.removeItemFromCart(product)
+              },
+              [_vm._v("+")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                on: {
+                  click: function($event) {
+                    return _vm.removeItemFromCart(product)
+                  }
                 }
-              }
-            },
-            [_vm._v("Remove from cart")]
-          )
-        ])
+              },
+              [_vm._v("Remove from cart")]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                attrs: {
+                  to: {
+                    name: "dashboard",
+                    params: { Order: _vm.Order, totPriceCart: _vm.totPriceCart }
+                  }
+                }
+              },
+              [_vm._v("procedi all'ordine")]
+            )
+          ],
+          1
+        )
       }),
       0
     ),
@@ -4957,19 +5007,36 @@ var render = function() {
     "section",
     { staticClass: "container" },
     [
-      _c("h1", [_vm._v("Questa è la tua Dashboard")]),
+      _c("h1", [_vm._v("conferma ordine")]),
       _vm._v(" "),
       _c(
-        "router-link",
-        { staticClass: "btn btn-primary", attrs: { to: { name: "orders" } } },
-        [_vm._v("\n    My orders\n  ")]
+        "div",
+        { staticClass: "products" },
+        [
+          _vm._l(_vm.ordine, function(item, index) {
+            return _c("div", { key: index }, [
+              _c("h3", [_vm._v("nome piatto" + _vm._s(item.name))]),
+              _vm._v(" "),
+              _c("h3", [_vm._v(_vm._s(item.description))]),
+              _vm._v(" "),
+              _c("h1", [_vm._v("prova")]),
+              _vm._v(" "),
+              _c("img", { attrs: { src: item.img } }),
+              _vm._v(" "),
+              _c("h4", [_vm._v("prezzo " + _vm._s(item.price) + "€")]),
+              _vm._v(" "),
+              _c("span", [_vm._v("quantity " + _vm._s(item["quantity"]))])
+            ])
+          }),
+          _vm._v(" "),
+          _c("h5", [_vm._v(_vm._s(_vm.totPrice))])
+        ],
+        2
       ),
       _vm._v(" "),
-      _c(
-        "router-link",
-        { staticClass: "btn btn-primary", attrs: { to: { name: "foods" } } },
-        [_vm._v("\n    My foods\n  ")]
-      ),
+      _vm.totPrice !== 0
+        ? _c("button", [_vm._v("procedi all'ordine")])
+        : _vm._e(),
       _vm._v(" "),
       _c(
         "router-link",
