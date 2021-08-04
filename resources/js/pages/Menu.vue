@@ -6,12 +6,17 @@
       <button  v-if="page === 'cart'"  class="btn" v-on:click="navigateTo('meals')">vedi piatti</button>
 
       <button
-      v-if="page === 'meals'" 
+      v-if="page === 'meals'"
       class="btn" v-on:click="navigateTo('cart')">vedi carrello</button>
          <div class="cart-length">
              {{cart.length}}
          </div>
       <button class="btn" v-if="page === 'cart'" v-on:click="removeCart()">cancella carrello</button>
+      <button
+      v-if="page === 'cart'" 
+      class="btn" v-on:click="navigateTo('pay')">
+        Procedi al pagamento
+      </button>
     </nav>
     <main class="container">
         <div v-if="!loaded" class="text-center mt-5">
@@ -20,6 +25,9 @@
         <div v-if="page === 'cart'">
           <Cart v-on:removeItemFromCart="removeItemFromCart" :cart="cart" />
           <!-- questo è il componente del carrello -->
+        </div>
+        <div v-if="page === 'pay'">
+          <Pay v-on:removeItemFromCart="removeItemFromCart" :pay="pay" />
         </div>
 
         <div v-if="page === 'meals'">
@@ -52,6 +60,7 @@ import axios from 'axios';
 import CardMeal from '../components/CardMeal.vue';
 import Cart from '../components/Cart.vue';
 import Loading from '../components/Home/Loading.vue';
+import Pay from '../components/Pay.vue'
 
 
 
@@ -60,7 +69,8 @@ export default {
   components:{
     CardMeal,
     Cart,
-    Loading
+    Loading,
+    Pay
   },
   data(){
     return{

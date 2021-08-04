@@ -47,7 +47,8 @@ const router = new VueRouter({
       name: 'dashboard',
       component: Dashboard
     }
-    
+    /* possibile componente da usare dopo il carrello */
+  
   ]
 })
 
